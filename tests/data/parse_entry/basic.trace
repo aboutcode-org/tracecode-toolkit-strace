@@ -1,0 +1,12 @@
+1389171522.375781 execve("/usr/bin/make", ["make"], [/* 22 vars */]) = 0
+1389171522.376446 open("/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 4
+1389171522.376468 read(4</lib/x86_64-linux-gnu/libc-2.15.so>, "\177ELF\2\1\1"..., 832) = 832
+1389171522.376782 arch_prctl(ARCH_SET_FS, 0x7ff784398700) = 0
+1389171522.377455 getcwd("/home/nexb/tools/strace/strace-4.8", 4096) = 35
+1389171522.377657 openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC) = 4
+1389171522.377780 open("Makefile", O_RDONLY) = 4
+1389171522.392265 openat(AT_FDCWD, "linux/x86_64", O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC) = 4
+1389171522.392467 write(1</dev/pts/6>, "/bin/mkdir -p ./linux\n", 22) = 22
+1389171522.392584 vfork() = 2453403
+1389171528.651642 chdir("/home/nexb/tools/strace/strace-4.8") = 0
+1390356496.673733 execve("/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1", ["/usr/lib/gcc/x86_64-linux-gnu/4."..., "-quiet", "-I", ".", "-I", ".", "-I", "./include", "-I", "./lib", "-imultilib", ".", "-imultiarch", "x86_64-linux-gnu", "-D", "PROGRAM=\"bash\"", ...], [/* 28 vars */]) = 0

@@ -1,0 +1,26 @@
+digraph G {
+rankdir="LR";
+	"/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/license" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/COPYING" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/Makefile.in" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/README" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/configure.ac" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/depcomp" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/install-sh" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/tests/main.c" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/tests/simple.c" [];
+	"/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" -> "/home/license" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/COPYING" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/Makefile.in" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/README" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/configure.ac" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/depcomp" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/install-sh" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/tests/main.c" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/tests/simple.c" -> "/bin/grep 2799712, 1389356960.191213:1389356960.220131-0" [];
+}

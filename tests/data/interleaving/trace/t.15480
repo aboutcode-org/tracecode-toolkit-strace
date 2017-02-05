@@ -1,0 +1,247 @@
+1392637437.084431 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+1392637437.084637 rt_sigaction(SIGTSTP, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {SIG_DFL, [], 0}, 8) = 0
+1392637437.084764 rt_sigaction(SIGTTIN, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {SIG_DFL, [], 0}, 8) = 0
+1392637437.084882 rt_sigaction(SIGTTOU, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {SIG_DFL, [], 0}, 8) = 0
+1392637437.084992 rt_sigaction(SIGINT, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, 8) = 0
+1392637437.085113 rt_sigaction(SIGQUIT, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {SIG_IGN, [], SA_RESTORER, 0x7fc3443ed9a0}, 8) = 0
+1392637437.085227 rt_sigaction(SIGCHLD, {SIG_DFL, [], SA_RESTORER, 0x7fc3443ed9a0}, {0x43f2b0, [], SA_RESTORER, 0x7fc3443ed9a0}, 8) = 0
+1392637437.085484 execve("/bin/cp", ["cp", "--preserve=timestamps", "systemsupport", "hardware.sh", "software.sh", "config.sh", "events.sh", "resource.sh", "alarm.sh", "logreport.sh", "mainreport.sh", "/home/nexb/bin"], [/* 12 vars */]) = 0
+1392637437.086405 brk(0) = 0x200a000
+1392637437.086559 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594db000
+1392637437.086694 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+1392637437.086859 open("/etc/ld.so.cache", O_RDONLY) = 3
+1392637437.086990 fstat(3</etc/ld.so.cache>, {st_mode=S_IFREG|0644, st_size=29648, ...}) = 0
+1392637437.087166 mmap(NULL, 29648, PROT_READ, MAP_PRIVATE, 3</etc/ld.so.cache>, 0) = 0x7f2d594d3000
+1392637437.087281 close(3</etc/ld.so.cache>) = 0
+1392637437.087411 open("/lib64/libselinux.so.1", O_RDONLY) = 3
+1392637437.087526 read(3</lib64/libselinux.so.1>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0PX\0\0\0\0\0\0"..., 832) = 832
+1392637437.087649 fstat(3</lib64/libselinux.so.1>, {st_mode=S_IFREG|0755, st_size=122040, ...}) = 0
+1392637437.087765 mmap(NULL, 2221912, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libselinux.so.1>, 0) = 0x7f2d5909e000
+1392637437.087879 mprotect(0x7f2d590bb000, 2093056, PROT_NONE) = 0
+1392637437.087978 mmap(0x7f2d592ba000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libselinux.so.1>, 0x1c000) = 0x7f2d592ba000
+1392637437.088115 mmap(0x7f2d592bc000, 1880, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f2d592bc000
+1392637437.088221 close(3</lib64/libselinux.so.1>) = 0
+1392637437.088340 open("/lib64/librt.so.1", O_RDONLY) = 3
+1392637437.088461 read(3</lib64/librt-2.12.so>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0@!\0\0\0\0\0\0"..., 832) = 832
+1392637437.088574 fstat(3</lib64/librt-2.12.so>, {st_mode=S_IFREG|0755, st_size=43832, ...}) = 0
+1392637437.088690 mmap(NULL, 2128816, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/librt-2.12.so>, 0) = 0x7f2d58e96000
+1392637437.088803 mprotect(0x7f2d58e9d000, 2093056, PROT_NONE) = 0
+1392637437.088896 mmap(0x7f2d5909c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/librt-2.12.so>, 0x6000) = 0x7f2d5909c000
+1392637437.089034 close(3</lib64/librt-2.12.so>) = 0
+1392637437.089159 open("/lib64/libacl.so.1", O_RDONLY) = 3
+1392637437.089275 read(3</lib64/libacl.so.1.1.0>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\200\36\0\0\0\0\0\0"..., 832) = 832
+1392637437.089387 fstat(3</lib64/libacl.so.1.1.0>, {st_mode=S_IFREG|0755, st_size=31280, ...}) = 0
+1392637437.089613 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594d2000
+1392637437.089745 mmap(NULL, 2126416, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libacl.so.1.1.0>, 0) = 0x7f2d58c8e000
+1392637437.089880 mprotect(0x7f2d58c95000, 2093056, PROT_NONE) = 0
+1392637437.089989 mmap(0x7f2d58e94000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libacl.so.1.1.0>, 0x6000) = 0x7f2d58e94000
+1392637437.090155 close(3</lib64/libacl.so.1.1.0>) = 0
+1392637437.090298 open("/lib64/libattr.so.1", O_RDONLY) = 3
+1392637437.090420 read(3</lib64/libattr.so.1.1.0>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\200\23\0\0\0\0\0\0"..., 832) = 832
+1392637437.090562 fstat(3</lib64/libattr.so.1.1.0>, {st_mode=S_IFREG|0755, st_size=18712, ...}) = 0
+1392637437.090683 mmap(NULL, 2113888, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libattr.so.1.1.0>, 0) = 0x7f2d58a89000
+1392637437.090800 mprotect(0x7f2d58a8d000, 2093056, PROT_NONE) = 0
+1392637437.090919 mmap(0x7f2d58c8c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libattr.so.1.1.0>, 0x3000) = 0x7f2d58c8c000
+1392637437.091060 close(3</lib64/libattr.so.1.1.0>) = 0
+1392637437.091241 open("/lib64/libc.so.6", O_RDONLY) = 3
+1392637437.091401 read(3</lib64/libc-2.12.so>, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0000\356\1\0\0\0\0\0"..., 832) = 832
+1392637437.091520 fstat(3</lib64/libc-2.12.so>, {st_mode=S_IFREG|0755, st_size=1921216, ...}) = 0
+1392637437.091644 mmap(NULL, 3750152, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libc-2.12.so>, 0) = 0x7f2d586f5000
+1392637437.091769 mprotect(0x7f2d58880000, 2093056, PROT_NONE) = 0
+1392637437.091890 mmap(0x7f2d58a7f000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libc-2.12.so>, 0x18a000) = 0x7f2d58a7f000
+1392637437.092034 mmap(0x7f2d58a84000, 18696, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f2d58a84000
+1392637437.092143 close(3</lib64/libc-2.12.so>) = 0
+1392637437.092269 open("/lib64/libdl.so.2", O_RDONLY) = 3
+1392637437.092385 read(3</lib64/libdl-2.12.so>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\340\r\0\0\0\0\0\0"..., 832) = 832
+1392637437.092496 fstat(3</lib64/libdl-2.12.so>, {st_mode=S_IFREG|0755, st_size=19536, ...}) = 0
+1392637437.092611 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594d1000
+1392637437.092713 mmap(NULL, 2109696, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libdl-2.12.so>, 0) = 0x7f2d584f1000
+1392637437.092828 mprotect(0x7f2d584f3000, 2097152, PROT_NONE) = 0
+1392637437.092923 mmap(0x7f2d586f3000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libdl-2.12.so>, 0x2000) = 0x7f2d586f3000
+1392637437.093060 close(3</lib64/libdl-2.12.so>) = 0
+1392637437.093182 open("/lib64/libpthread.so.0", O_RDONLY) = 3
+1392637437.093299 read(3</lib64/libpthread-2.12.so>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\340]\0\0\0\0\0\0"..., 832) = 832
+1392637437.093411 fstat(3</lib64/libpthread-2.12.so>, {st_mode=S_IFREG|0755, st_size=142640, ...}) = 0
+1392637437.093690 mmap(NULL, 2212848, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3</lib64/libpthread-2.12.so>, 0) = 0x7f2d582d4000
+1392637437.093824 mprotect(0x7f2d582eb000, 2097152, PROT_NONE) = 0
+1392637437.093935 mmap(0x7f2d584eb000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3</lib64/libpthread-2.12.so>, 0x17000) = 0x7f2d584eb000
+1392637437.094095 mmap(0x7f2d584ed000, 13296, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f2d584ed000
+1392637437.094210 close(3</lib64/libpthread-2.12.so>) = 0
+1392637437.094490 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594d0000
+1392637437.094619 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594ce000
+1392637437.094726 arch_prctl(ARCH_SET_FS, 0x7f2d594ce7a0) = 0
+1392637437.094885 mprotect(0x7f2d584eb000, 4096, PROT_READ) = 0
+1392637437.095027 mprotect(0x7f2d586f3000, 4096, PROT_READ) = 0
+1392637437.095299 mprotect(0x7f2d58a7f000, 16384, PROT_READ) = 0
+1392637437.095406 mprotect(0x7f2d58c8c000, 4096, PROT_READ) = 0
+1392637437.095509 mprotect(0x7f2d58e94000, 4096, PROT_READ) = 0
+1392637437.095609 mprotect(0x7f2d5909c000, 4096, PROT_READ) = 0
+1392637437.095730 mprotect(0x7f2d592ba000, 4096, PROT_READ) = 0
+1392637437.095858 mprotect(0x7f2d594dc000, 4096, PROT_READ) = 0
+1392637437.095952 munmap(0x7f2d594d3000, 29648) = 0
+1392637437.096153 set_tid_address(0x7f2d594cea70) = 15480
+1392637437.096241 set_robust_list(0x7f2d594cea80, 24) = 0
+1392637437.096326 futex(0x7fff3b3a9ffc, FUTEX_WAKE_PRIVATE, 1) = 0
+1392637437.096414 futex(0x7fff3b3a9ffc, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 1, NULL, 7f2d594ce7a0) = -1 EAGAIN (Resource temporarily unavailable)
+1392637437.096558 rt_sigaction(SIGRTMIN, {0x7f2d582d9c60, [], SA_RESTORER|SA_SIGINFO, 0x7f2d582e3710}, NULL, 8) = 0
+1392637437.096659 rt_sigaction(SIGRT_1, {0x7f2d582d9cf0, [], SA_RESTORER|SA_RESTART|SA_SIGINFO, 0x7f2d582e3710}, NULL, 8) = 0
+1392637437.096755 rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+1392637437.096886 getrlimit(RLIMIT_STACK, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+1392637437.097075 statfs("/selinux", {f_type=0x61756673, f_bsize=4096, f_blocks=478682971, f_bfree=475710741, f_bavail=451393378, f_files=121593856, f_ffree=120646406, f_fsid={0, 0}, f_namelen=242, f_frsize=4096}) = 0
+1392637437.097336 brk(0) = 0x200a000
+1392637437.097421 brk(0x202b000) = 0x202b000
+1392637437.097693 open("/proc/filesystems", O_RDONLY) = 3
+1392637437.097881 fstat(3</proc/filesystems>, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+1392637437.098043 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594da000
+1392637437.098149 read(3</proc/filesystems>, "nodev\tsysfs\nnodev\trootfs\nnodev\tb"..., 1024) = 399
+1392637437.098343 read(3</proc/filesystems>, "", 1024) = 0
+1392637437.098462 close(3</proc/filesystems>) = 0
+1392637437.098648 munmap(0x7f2d594da000, 4096) = 0
+1392637437.098931 open("/proc/filesystems", O_RDONLY) = 3
+1392637437.099096 fstat(3</proc/filesystems>, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+1392637437.099219 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2d594da000
+1392637437.099323 read(3</proc/filesystems>, "nodev\tsysfs\nnodev\trootfs\nnodev\tb"..., 1024) = 399
+1392637437.099502 read(3</proc/filesystems>, "", 1024) = 0
+1392637437.099610 close(3</proc/filesystems>) = 0
+1392637437.099795 munmap(0x7f2d594da000, 4096) = 0
+1392637437.099941 geteuid() = 0
+1392637437.100102 stat("/home/nexb/bin", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+1392637437.100282 stat("systemsupport", {st_mode=S_IFREG|0755, st_size=150927, ...}) = 0
+1392637437.100406 stat("/home/nexb/bin/systemsupport", 0x7fff3b3a9b70) = -1 ENOENT (No such file or directory)
+1392637437.100544 lstat("/home/nexb/bin/systemsupport", 0x7fff3b3a99c0) = -1 ENOENT (No such file or directory)
+1392637437.100650 open("systemsupport", O_RDONLY) = 3
+1392637437.100780 fstat(3</home/nexb/build/tools/systemsupport/systemsupport>, {st_mode=S_IFREG|0755, st_size=150927, ...}) = 0
+1392637437.100906 open("/home/nexb/bin/systemsupport", O_WRONLY|O_CREAT|O_EXCL, 0755) = 4
+1392637437.101118 fstat(4</home/nexb/bin/systemsupport>, {st_mode=S_IFREG|0755, st_size=0, ...}) = 0
+1392637437.101269 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\2\0>\0\1\0\0\0\200z@\0\0\0\0\0"..., 32768) = 32768
+1392637437.101551 write(4</home/nexb/bin/systemsupport>, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\2\0>\0\1\0\0\0\200z@\0\0\0\0\0"..., 32768) = 32768
+1392637437.101778 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "\214I\213<$H\211\306\350\233\370\377\377\353\354H\215\25\202\321\0\0\211\306H\211\347\350\220\1\0\0"..., 32768) = 32768
+1392637437.101912 write(4</home/nexb/bin/systemsupport>, "\214I\213<$H\211\306\350\233\370\377\377\353\354H\215\25\202\321\0\0\211\306H\211\347\350\220\1\0\0"..., 32768) = 32768
+1392637437.102108 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "\300cA\0\277\0\305a\0\350\32w\377\377H\211\307\350Ru\377\377\351\201\341\377\377H\211D$\10"..., 32768) = 32768
+1392637437.102242 write(4</home/nexb/bin/systemsupport>, "\300cA\0\277\0\305a\0\350\32w\377\377H\211\307\350Ru\377\377\351\201\341\377\377H\211D$\10"..., 32768) = 32768
+1392637437.102430 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "pINS_16exception_detail10clone_i"..., 32768) = 32768
+1392637437.102562 write(4</home/nexb/bin/systemsupport>, "pINS_16exception_detail10clone_i"..., 32768) = 32768
+1392637437.102751 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "erL10ALARM_FILEE\0_ZN11snmpmanage"..., 32768) = 19855
+1392637437.102902 write(4</home/nexb/bin/systemsupport>, "erL10ALARM_FILEE\0_ZN11snmpmanage"..., 19855) = 19855
+1392637437.103063 read(3</home/nexb/build/tools/systemsupport/systemsupport>, "", 32768) = 0
+1392637437.103184 utimensat(4</home/nexb/bin/systemsupport>, NULL, {{1392637351, 14220093}, {1392637351, 14220093}}, 0) = 0
+1392637437.103321 close(4</home/nexb/bin/systemsupport>) = 0
+1392637437.103446 close(3</home/nexb/build/tools/systemsupport/systemsupport>) = 0
+1392637437.103603 lstat("/home/nexb/bin/systemsupport", {st_mode=S_IFREG|0755, st_size=150927, ...}) = 0
+1392637437.103753 stat("hardware.sh", {st_mode=S_IFREG|0755, st_size=2266, ...}) = 0
+1392637437.103870 stat("/home/nexb/bin/hardware.sh", 0x7fff3b3a9b40) = -1 ENOENT (No such file or directory)
+1392637437.103993 lstat("/home/nexb/bin/hardware.sh", 0x7fff3b3a9990) = -1 ENOENT (No such file or directory)
+1392637437.104095 open("hardware.sh", O_RDONLY) = 3
+1392637437.104209 fstat(3</home/nexb/build/tools/systemsupport/hardware.sh>, {st_mode=S_IFREG|0755, st_size=2266, ...}) = 0
+1392637437.104331 open("/home/nexb/bin/hardware.sh", O_WRONLY|O_CREAT|O_EXCL, 0755) = 4
+1392637437.104514 fstat(4</home/nexb/bin/hardware.sh>, {st_mode=S_IFREG|0755, st_size=0, ...}) = 0
+1392637437.104635 read(3</home/nexb/build/tools/systemsupport/hardware.sh>, "#! /bin/sh\n#\n# $Id: hardware"..., 32768) = 2266
+1392637437.104748 write(4</home/nexb/bin/hardware.sh>, "#! /bin/sh\n#\n# $Id: hardware"..., 2266) = 2266
+1392637437.104885 read(3</home/nexb/build/tools/systemsupport/hardware.sh>, "", 32768) = 0
+1392637437.104990 utimensat(4</home/nexb/bin/hardware.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.105116 close(4</home/nexb/bin/hardware.sh>) = 0
+1392637437.105223 close(3</home/nexb/build/tools/systemsupport/hardware.sh>) = 0
+1392637437.105330 lstat("/home/nexb/bin/hardware.sh", {st_mode=S_IFREG|0755, st_size=2266, ...}) = 0
+1392637437.105514 stat("software.sh", {st_mode=S_IFREG|0644, st_size=1039, ...}) = 0
+1392637437.105644 stat("/home/nexb/bin/software.sh", 0x7fff3b3a9b10) = -1 ENOENT (No such file or directory)
+1392637437.105758 lstat("/home/nexb/bin/software.sh", 0x7fff3b3a9960) = -1 ENOENT (No such file or directory)
+1392637437.105857 open("software.sh", O_RDONLY) = 3
+1392637437.105965 fstat(3</home/nexb/build/tools/systemsupport/software.sh>, {st_mode=S_IFREG|0644, st_size=1039, ...}) = 0
+1392637437.106086 open("/home/nexb/bin/software.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.106248 fstat(4</home/nexb/bin/software.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.106367 read(3</home/nexb/build/tools/systemsupport/software.sh>, "#!/bin/bash\n#\n# $Id: hardwareR"..., 32768) = 1039
+1392637437.106479 write(4</home/nexb/bin/software.sh>, "#!/bin/bash\n#\n# $Id: hardware"..., 1039) = 1039
+1392637437.106610 read(3</home/nexb/build/tools/systemsupport/software.sh>, "", 32768) = 0
+1392637437.106716 utimensat(4</home/nexb/bin/software.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.106837 close(4</home/nexb/bin/software.sh>) = 0
+1392637437.106943 close(3</home/nexb/build/tools/systemsupport/software.sh>) = 0
+1392637437.107047 lstat("/home/nexb/bin/software.sh", {st_mode=S_IFREG|0644, st_size=1039, ...}) = 0
+1392637437.107169 stat("config.sh", {st_mode=S_IFREG|0644, st_size=1309, ...}) = 0
+1392637437.107281 stat("/home/nexb/bin/config.sh", 0x7fff3b3a9af0) = -1 ENOENT (No such file or directory)
+1392637437.107391 lstat("/home/nexb/bin/config.sh", 0x7fff3b3a9940) = -1 ENOENT (No such file or directory)
+1392637437.107502 open("config.sh", O_RDONLY) = 3
+1392637437.107610 fstat(3</home/nexb/build/tools/systemsupport/config.sh>, {st_mode=S_IFREG|0644, st_size=1309, ...}) = 0
+1392637437.107730 open("/home/nexb/bin/config.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.107887 fstat(4</home/nexb/bin/config.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.108005 read(3</home/nexb/build/tools/systemsupport/config.sh>, "#!/bin/bash\n#\n# $Id: hardware"..., 32768) = 1309
+1392637437.108116 write(4</home/nexb/bin/config.sh>, "#!/bin/bash\n#\n# $Id: hardware"..., 1309) = 1309
+1392637437.108246 read(3</home/nexb/build/tools/systemsupport/config.sh>, "", 32768) = 0
+1392637437.108350 utimensat(4</home/nexb/bin/config.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.108469 close(4</home/nexb/bin/config.sh>) = 0
+1392637437.108573 close(3</home/nexb/build/tools/systemsupport/config.sh>) = 0
+1392637437.108677 lstat("/home/nexb/bin/config.sh", {st_mode=S_IFREG|0644, st_size=1309, ...}) = 0
+1392637437.108796 stat("events.sh", {st_mode=S_IFREG|0644, st_size=414, ...}) = 0
+1392637437.108907 stat("/home/nexb/bin/events.sh", 0x7fff3b3a9ad0) = -1 ENOENT (No such file or directory)
+1392637437.109017 lstat("/home/nexb/bin/events.sh", 0x7fff3b3a9920) = -1 ENOENT (No such file or directory)
+1392637437.109116 open("events.sh", O_RDONLY) = 3
+1392637437.109221 fstat(3</home/nexb/build/tools/systemsupport/events.sh>, {st_mode=S_IFREG|0644, st_size=414, ...}) = 0
+1392637437.109339 open("/home/nexb/bin/events.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.109594 fstat(4</home/nexb/bin/events.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.109755 read(3</home/nexb/build/tools/systemsupport/events.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 32768) = 414
+1392637437.109880 write(4</home/nexb/bin/events.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 414) = 414
+1392637437.110073 read(3</home/nexb/build/tools/systemsupport/events.sh>, "", 32768) = 0
+1392637437.110182 utimensat(4</home/nexb/bin/events.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.110311 close(4</home/nexb/bin/events.sh>) = 0
+1392637437.110504 close(3</home/nexb/build/tools/systemsupport/events.sh>) = 0
+1392637437.110638 lstat("/home/nexb/bin/events.sh", {st_mode=S_IFREG|0644, st_size=414, ...}) = 0
+1392637437.110783 stat("resource.sh", {st_mode=S_IFREG|0644, st_size=1466, ...}) = 0
+1392637437.110900 stat("/home/nexb/bin/resource.sh", 0x7fff3b3a9aa0) = -1 ENOENT (No such file or directory)
+1392637437.111032 lstat("/home/nexb/bin/resource.sh", 0x7fff3b3a98f0) = -1 ENOENT (No such file or directory)
+1392637437.111135 open("resource.sh", O_RDONLY) = 3
+1392637437.111251 fstat(3</home/nexb/build/tools/systemsupport/resource.sh>, {st_mode=S_IFREG|0644, st_size=1466, ...}) = 0
+1392637437.111371 open("/home/nexb/bin/resource.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.111567 fstat(4</home/nexb/bin/resource.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.111688 read(3</home/nexb/build/tools/systemsupport/resource.sh>, "#! /bin/sh\n#\n# $Id: resource"..., 32768) = 1466
+1392637437.111800 write(4</home/nexb/bin/resource.sh>, "#! /bin/sh\n#\n# $Id: resource"..., 1466) = 1466
+1392637437.111930 read(3</home/nexb/build/tools/systemsupport/resource.sh>, "", 32768) = 0
+1392637437.112035 utimensat(4</home/nexb/bin/resource.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.112155 close(4</home/nexb/bin/resource.sh>) = 0
+1392637437.112262 close(3</home/nexb/build/tools/systemsupport/resource.sh>) = 0
+1392637437.112367 lstat("/home/nexb/bin/resource.sh", {st_mode=S_IFREG|0644, st_size=1466, ...}) = 0
+1392637437.112504 stat("alarm.sh", {st_mode=S_IFREG|0644, st_size=591, ...}) = 0
+1392637437.112618 stat("/home/nexb/bin/alarm.sh", 0x7fff3b3a9a80) = -1 ENOENT (No such file or directory)
+1392637437.112729 lstat("/home/nexb/bin/alarm.sh", 0x7fff3b3a98d0) = -1 ENOENT (No such file or directory)
+1392637437.112828 open("alarm.sh", O_RDONLY) = 3
+1392637437.112935 fstat(3</home/nexb/build/tools/systemsupport/alarm.sh>, {st_mode=S_IFREG|0644, st_size=591, ...}) = 0
+1392637437.113056 open("/home/nexb/bin/alarm.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.113215 fstat(4</home/nexb/bin/alarm.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.113334 read(3</home/nexb/build/tools/systemsupport/alarm.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 32768) = 591
+1392637437.113488 write(4</home/nexb/bin/alarm.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 591) = 591
+1392637437.113657 read(3</home/nexb/build/tools/systemsupport/alarm.sh>, "", 32768) = 0
+1392637437.113766 utimensat(4</home/nexb/bin/alarm.sh>, NULL, {{1392552703, 364329098}, {1390335654, 0}}, 0) = 0
+1392637437.113890 close(4</home/nexb/bin/alarm.sh>) = 0
+1392637437.114004 close(3</home/nexb/build/tools/systemsupport/alarm.sh>) = 0
+1392637437.114202 lstat("/home/nexb/bin/alarm.sh", {st_mode=S_IFREG|0644, st_size=591, ...}) = 0
+1392637437.114412 stat("logreport.sh", {st_mode=S_IFREG|0644, st_size=651, ...}) = 0
+1392637437.114529 stat("/home/nexb/bin/logreport.sh", 0x7fff3b3a9a60) = -1 ENOENT (No such file or directory)
+1392637437.114648 lstat("/home/nexb/bin/logreport.sh", 0x7fff3b3a98b0) = -1 ENOENT (No such file or directory)
+1392637437.114748 open("logreport.sh", O_RDONLY) = 3
+1392637437.114856 fstat(3</home/nexb/build/tools/systemsupport/logreport.sh>, {st_mode=S_IFREG|0644, st_size=651, ...}) = 0
+1392637437.115005 open("/home/nexb/bin/logreport.sh", O_WRONLY|O_CREAT|O_EXCL, 0644) = 4
+1392637437.115168 fstat(4</home/nexb/bin/logreport.sh>, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+1392637437.115289 read(3</home/nexb/build/tools/systemsupport/logreport.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 32768) = 651
+1392637437.115403 write(4</home/nexb/bin/logreport.sh>, "#! /bin/sh\n#\n# $Id: events.sh"..., 651) = 651
+1392637437.115530 read(3</home/nexb/build/tools/systemsupport/logreport.sh>, "", 32768) = 0
+1392637437.115633 utimensat(4</home/nexb/bin/logreport.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.115755 close(4</home/nexb/bin/logreport.sh>) = 0
+1392637437.115860 close(3</home/nexb/build/tools/systemsupport/logreport.sh>) = 0
+1392637437.115962 lstat("/home/nexb/bin/logreport.sh", {st_mode=S_IFREG|0644, st_size=651, ...}) = 0
+1392637437.116082 stat("mainreport.sh", {st_mode=S_IFREG|0755, st_size=1265, ...}) = 0
+1392637437.116193 stat("/home/nexb/bin/mainreport.sh", 0x7fff3b3a9a40) = -1 ENOENT (No such file or directory)
+1392637437.116301 lstat("/home/nexb/bin/mainreport.sh", 0x7fff3b3a9890) = -1 ENOENT (No such file or directory)
+1392637437.116400 open("mainreport.sh", O_RDONLY) = 3
+1392637437.116504 fstat(3</home/nexb/build/tools/systemsupport/mainreport.sh>, {st_mode=S_IFREG|0755, st_size=1265, ...}) = 0
+1392637437.116621 open("/home/nexb/bin/mainreport.sh", O_WRONLY|O_CREAT|O_EXCL, 0755) = 4
+1392637437.116780 fstat(4</home/nexb/bin/mainreport.sh>, {st_mode=S_IFREG|0755, st_size=0, ...}) = 0
+1392637437.116897 read(3</home/nexb/build/tools/systemsupport/mainreport.sh>, "#! /bin/sh\n#\n\nif [ $1 ] ; then\n "..., 32768) = 1265
+1392637437.117008 write(4</home/nexb/bin/mainreport.sh>, "#! /bin/sh\n#\n\nif [ $1 ] ; then\n "..., 1265) = 1265
+1392637437.117135 read(3</home/nexb/build/tools/systemsupport/mainreport.sh>, "", 32768) = 0
+1392637437.117261 utimensat(4</home/nexb/bin/mainreport.sh>, NULL, {{1392552703, 360329098}, {1390335654, 0}}, 0) = 0
+1392637437.117381 close(4</home/nexb/bin/mainreport.sh>) = 0
+1392637437.117575 close(3</home/nexb/build/tools/systemsupport/mainreport.sh>) = 0
+1392637437.117777 lstat("/home/nexb/bin/mainreport.sh", {st_mode=S_IFREG|0755, st_size=1265, ...}) = 0
+1392637437.117973 close(0</dev/pts/8>) = 0
+1392637437.118089 close(1</dev/pts/8>) = 0
+1392637437.118197 close(2</dev/pts/8>) = 0
+1392637437.118355 exit_group(0) = ?
+1392637437.118743 +++ exited with 0 +++

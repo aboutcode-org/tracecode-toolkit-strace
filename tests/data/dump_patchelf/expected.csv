@@ -1,0 +1,75 @@
+type,path,opid,command,start,end
+c,,2800285.0,/usr/bin/make,1389366380.186603,1389366380.186603
+f,/home/nexb/tools/patchelf/patchelf-0.5/Makefile,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/Makefile,2800285.0,/usr/bin/make,1389366380.186603,1389366380.186603
+c,,2800286.0,/bin/bash,1389366380.196699,1389366380.196699
+f,pipe:[15206912],,,,
+r,pipe:[15206912],2800286.0,/bin/bash,1389366380.196699,1389366380.196699
+c,,2800287.0,/bin/bash,1389366380.189777,1389366380.189777
+c,,2800288.0,/bin/bash,1389366380.198862,1389366380.198862
+f,pipe:[15213549],,,,
+w,pipe:[15213549],2800288.0,/bin/bash,1389366380.198862,1389366380.198862
+c,,2800289.0,"/bin/bash, /bin/sed",1389366380.204499,1389366380.204850
+r,pipe:[15213549],2800289.0,"/bin/bash, /bin/sed",1389366380.204499,1389366380.204850
+w,pipe:[15206912],2800289.0,"/bin/bash, /bin/sed",1389366380.204499,1389366380.204850
+c,,2800290.0,/bin/bash,1389366380.189777,1389366380.189777
+c,,2800291.0,"/bin/bash, /usr/bin/make",1389366380.215465,1389366380.216198
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/Makefile,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/Makefile,2800291.0,"/bin/bash, /usr/bin/make",1389366380.215465,1389366380.216198
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Po,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Po,2800291.0,"/bin/bash, /usr/bin/make",1389366380.215465,1389366380.216198
+c,,2800292.0,"/bin/bash, /usr/bin/g++",1389366380.258544,1389366380.258544
+f,/tmp/ccSJnJSm.s,,,,
+w,/tmp/ccSJnJSm.s,2800292.0,"/bin/bash, /usr/bin/g++",1389366380.258544,1389366380.258544
+c,,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h,,,,
+r,/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h,,,,
+r,/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h,,,,
+r,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h,,,,
+r,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h,,,,
+r,/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.cc,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.cc,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Tpo,,,,
+w,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Tpo,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+w,/tmp/ccSJnJSm.s,2800293.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus,1389366380.268494,1389366382.813827
+c,,2800294.0,/usr/bin/as,1389366382.835362,1389366383.032517
+r,/tmp/ccSJnJSm.s,2800294.0,/usr/bin/as,1389366382.835362,1389366383.032517
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o,,,,
+w,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o,2800294.0,/usr/bin/as,1389366382.835362,1389366383.032517
+c,,2800295.0,"/bin/bash, /bin/mv",1389366383.055569,1389366383.055569
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Tpo,2800295.0,"/bin/bash, /bin/mv",1389366383.055569,1389366383.055569
+w,/home/nexb/tools/patchelf/patchelf-0.5/src/.deps/patchelf.Po,2800295.0,"/bin/bash, /bin/mv",1389366383.055569,1389366383.055569
+c,,2800295.1,"/bin/bash, /bin/mv",1389366383.040790,1389366383.049423
+c,,2800297.0,"/bin/bash, /usr/bin/g++",1389366383.068240,1389366383.075884
+c,,2800298.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/collect2,1389366383.091673,1389366383.106196
+f,/tmp/ccxlsgGu.le,,,,
+w,/tmp/ccxlsgGu.le,2800298.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/collect2,1389366383.091673,1389366383.106196
+f,/tmp/ccj50xXq.ld,,,,
+w,/tmp/ccj50xXq.ld,2800298.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/collect2,1389366383.091673,1389366383.106196
+f,/tmp/ccHpGGfn.o,,,,
+w,/tmp/ccHpGGfn.o,2800298.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/collect2,1389366383.091673,1389366383.106196
+f,/tmp/ccDO5gyj.c,,,,
+w,/tmp/ccDO5gyj.c,2800298.0,/usr/lib/gcc/x86_64-linux-gnu/4.6/collect2,1389366383.091673,1389366383.106196
+c,,2800299.0,/usr/bin/ld,1389366383.116154,1389366383.322328
+r,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o,2800299.0,/usr/bin/ld,1389366383.116154,1389366383.322328
+f,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf,,,,
+w,/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf,2800299.0,/usr/bin/ld,1389366383.116154,1389366383.322328
+c,,2800300.0,/bin/bash,1389366380.189777,1389366380.189777
+c,,2800301.0,"/bin/bash, /usr/bin/make",1389366383.338572,1389366383.340080
+f,/home/nexb/tools/patchelf/patchelf-0.5/tests/Makefile,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/tests/Makefile,2800301.0,"/bin/bash, /usr/bin/make",1389366383.338572,1389366383.340080
+f,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/big-dynstr.Po,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/big-dynstr.Po,2800301.0,"/bin/bash, /usr/bin/make",1389366383.338572,1389366383.340080
+f,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/main.Po,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/main.Po,2800301.0,"/bin/bash, /usr/bin/make",1389366383.338572,1389366383.340080
+f,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/simple.Po,,,,
+r,/home/nexb/tools/patchelf/patchelf-0.5/tests/.deps/simple.Po,2800301.0,"/bin/bash, /usr/bin/make",1389366383.338572,1389366383.340080
+c,,2800302.0,"/bin/bash, /usr/bin/make",1389366383.354189,1389366383.354189
+r,/home/nexb/tools/patchelf/patchelf-0.5/Makefile,2800302.0,"/bin/bash, /usr/bin/make",1389366383.354189,1389366383.354189

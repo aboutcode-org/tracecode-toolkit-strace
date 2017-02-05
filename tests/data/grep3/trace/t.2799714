@@ -1,0 +1,3 @@
+1389356960.187622 execve("/bin/grep", ["grep", "-r", ".", "-e", "permit"], [/* 22 vars */]) = 0
+1389356960.220192 read(3</home/nexb/tools/patchelf/patchelf-0.5/tests/main.c>, "", 126976) = 0
+1389356960.220617 +++ exited with 0 +++

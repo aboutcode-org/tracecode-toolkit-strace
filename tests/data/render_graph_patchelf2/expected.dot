@@ -1,0 +1,30 @@
+digraph G {
+rankdir="LR";
+	"/bin/bash, /usr/bin/g++ 2800292, 1389366380.258544:1389366380.258544-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.cc" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o" [];
+	"/tmp/ccSJnJSm.s" [];
+	"/usr/bin/as 2800294, 1389366382.835362:1389366383.032517-0" [];
+	"/usr/bin/ld 2800299, 1389366383.116154:1389366383.322328-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h" [];
+	"/bin/bash, /usr/bin/g++ 2800292, 1389366380.258544:1389366380.258544-0" -> "/tmp/ccSJnJSm.s" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.cc" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o" -> "/usr/bin/ld 2800299, 1389366383.116154:1389366383.322328-0" [];
+	"/tmp/ccSJnJSm.s" -> "/usr/bin/as 2800294, 1389366382.835362:1389366383.032517-0" [];
+	"/usr/bin/as 2800294, 1389366382.835362:1389366383.032517-0" -> "/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.o" [];
+	"/usr/bin/ld 2800299, 1389366383.116154:1389366383.322328-0" -> "/home/nexb/tools/patchelf/patchelf-0.5/src/patchelf" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" -> "/tmp/ccSJnJSm.s" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h" -> "/usr/lib/gcc/x86_64-linux-gnu/4.6/cc1plus 2800293, 1389366380.268494:1389366382.813827-0" [];
+}

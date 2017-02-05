@@ -1,0 +1,6 @@
+1389268407.589799 read(-1, 0x7fff95659f3f, 1) = -1 EBADF (Bad file descriptor)
+1389268400.403536 openat(AT_FDCWD, "vendor/prebuilt.mk", O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC) = -1 ENOTDIR (Not a directory)
+1389268407.678015 vfork() = ? ERESTARTNOINTR (To be restarted)
+1389268416.585898 read(5<pipe:[14005566]>, 0x7fff95659c3f, 1) = ? ERESTARTSYS (To be restarted if SA_RESTART is set)
+1389268417.214601 read(-1, 0x7fff95659c3f, 1) = -1 EBADF (Bad file descriptor)
+THIS IS not a line at all

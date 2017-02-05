@@ -1,0 +1,7 @@
+1392637437.085484 execve("/bin/cp", ["cp", "--preserve=timestamps", "systemsupport", "hardware.sh", "software.sh", "config.sh", "events.sh", "resource.sh", "alarm.sh", "logreport.sh", "mainreport.sh", "/home/nexb/bin"], [/* 12 vars */]) = 0
+1392637437.104635 read(3</home/nexb/build/tools/systemsupport/hardware.sh>, "#! /bin/sh\n#\n# $Id: hardware"..., 32768) = 2266
+1392637437.104748 write(4</home/nexb/bin/systemsupport/hardware.sh>, "#! /bin/sh\n#\n# $Id: hardware"..., 2266) = 2266
+1392637437.106367 read(3</home/nexb/build/tools/systemsupport2/hardware.sh>, "#!/bin/bash\n#\n# $Id: hardwareR"..., 32768) = 1039
+1392637437.106479 write(4</home/nexb/bin/systemsupport2/hardware.sh>, "#!/bin/bash\n#\n# $Id: hardware"..., 1039) = 1039
+1392637437.118355 exit_group(0) = ?
+1392637437.118743 +++ exited with 0 +++
