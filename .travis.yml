@@ -1,0 +1,13 @@
+language: cpp
+
+os: 
+  - osx
+  - linux 
+
+
+install:
+    - source configure
+
+script:
+    - py.test  -vvs src tests
+

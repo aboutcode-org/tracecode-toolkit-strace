@@ -1,0 +1,14 @@
+# Base configuration tools
+certifi
+setuptools
+wheel
+pip
+
+
+docopt
+
+# Graphing
+altgraph
+
+# self
+-e .

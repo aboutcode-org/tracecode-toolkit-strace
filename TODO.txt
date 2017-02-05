@@ -1,0 +1,7 @@
+[ ] replace docopt with click for CLI arguments handling
+[ ] support analyzing using only targets
+[ ] keep FD for pipes and sockets "paths"
+[ ] trace and do not follow pipes and sockets after they have been closed
+[ ] find alternative to dot for large graphs
+[ ] store the graph in a graph database
+[ ] track the FD lifecycle

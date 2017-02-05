@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Copyright (c) 2017 nexB Inc. http://www.nexb.com/ - All rights reserved.
+#
+
+# A minimal shell wrapper to the CLI entry point
+
+TRACECODE_ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+TRACECODE_CONFIGURED_PYTHON=$TRACECODE_ROOT_DIR/bin/python
+if [ ! -f "$TRACECODE_CONFIGURED_PYTHON" ]; then
+    echo "* Configuring TraceCode for first use..."
+    CONFIGURE_QUIET=1 $TRACECODE_ROOT_DIR/configure etc/conf
+fi
+
+$TRACECODE_ROOT_DIR/bin/tracecode "$@"

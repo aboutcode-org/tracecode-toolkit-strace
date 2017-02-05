@@ -1,0 +1,10 @@
+
+# Testing
+pytest
+colorama
+execnet
+py
+pytest-xdist
+
+#
+bumpversion
