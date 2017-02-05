@@ -1,0 +1,10 @@
+about_resource: altgraph-0.13-py2-none-any.whl
+name: altgraph
+version: 0.13
+
+download_url: https://bitbucket.org/ronaldoussoren/altgraph/get/48850132bf03.tar.gz
+
+home_url: https://bitbucket.org/ronaldoussoren/altgraph/
+dje_license: mit
+license_text_file: altgraph.LICENSE
+owner: Ronald Oussoren
