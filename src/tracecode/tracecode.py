@@ -108,13 +108,13 @@ def validate_traces(input_dir):
             if ts and len(ts) >= 1:
                 ts = float(ts[0])
 
-            if oldest_ts:
-                if ts <= oldest_ts:
+                if oldest_ts:
+                    if ts <= oldest_ts:
+                        oldest_ts = ts
+                        oldest_pid = pid
+                else:
                     oldest_ts = ts
                     oldest_pid = pid
-            else:
-                oldest_ts = ts
-                oldest_pid = pid
 
         # store a process trace by id
         traces[pid] = path
