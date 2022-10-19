@@ -5,11 +5,15 @@ TraceCode is a tool to analyze the traced execution of a build, so you can learn
 which files are built into binaries and ultimately deployed in your distributed 
 software.
 
+This TraceCode toolkit uses strace to capture the system-level trace of a build
+and can reconstruct how the build transforms and compiles files from this trace
+aka. the build graph.
+
 
 1. Tracing a build
 -------------------------
 
-See docs/README-build-tracing.rst for tracing a build
+See README-build-tracing.rst for tracing a build
 
 
 2. System requirements and installation
@@ -35,39 +39,47 @@ be usable.
 3. Install TraceCode
 --------------------
 
-Get it from https://github.com/nexb/tracecode-build and unzip it.
-The path were this is unzipped will be  referred to as {tracecode_dir} later
+Get it from https://github.com/nexb/tracecode-toolkit-strace and unzip it.
+The path were this is unzipped will be  referred to as <tracecode_dir> later
 in this document. 
 
 Then execute this command to setup TraceCode::
-    ./configure 
+
+    ./configure --dev
 
 Finally run the built-in selftest to verify your installation::
+
     py.test -vvs tests
 
 
 4. Install strace
 -----------------
 
+One debian::
+
+sudo apt-get strace
+
 
 5. Analyze your build
 ---------------------
 
 Analyzing a traced build is a multi-stage process that involves:
- - parsing and checking the initial traces,
-     - optionally filtering the parsed traces,
 
-     - optionally collecting the inventory of files read and written during
-       the build,
+- parsing and checking the initial traces,
 
- - creating the list of source (input) and target (output) files for your
-   build,
+  - optionally filtering the parsed traces,
 
- - analyzing the build graph to determine the source to target relationships, 
-   such as source code files being built into a binary,
+  - optionally collecting the inventory of files read and written during
+    the build,
 
-     - optionally creating graphical representations to visualize subset of 
-       your build graph.
+- creating the list of source (input) and target (output) files for your
+  build,
+
+- analyzing the build graph to determine the source to target relationships, 
+  such as source code files being built into a binary,
+
+  - optionally creating graphical representations to visualize subset of 
+    your build graph.
 
 Each of these steps is performed by invoking `tracecode` from the command line 
 with different options and arguments.
@@ -87,9 +99,17 @@ For command help use::
 Tutorial
 ========
 
+See README-build-tracing.rst for extra details.
+
+
 0. Trace a command
 ------------------
 
+Use strace this way::
+
+    $(which strace) -ff -y -ttt -qq -a1 \
+    -o {NEW EMPTY tracing_dir}/{trace prefix} \
+    {build command}
 
 1. Parse the collected raw traces
 ---------------------------------
@@ -104,7 +124,7 @@ This will parse the traces and ensure they can be processed and are complete
 
 
 2. Collect the inventory of files processed during the tracing
---------------------------------------------------------------
+----------------------------------------------------------------
 
 If traces are consistent the next step is to collect the inventories of files
 reads and writes. Use the "list" command (which should be called inventory).
@@ -118,7 +138,7 @@ The list command extracts all the paths used in the traces.
 
 
 3. optional but recommended: Filter your parsed traces
-------------------------------------------------------
+-------------------------------------------------------
 
 The next step is to review these reads and writes and decide which ones could
 be filtered out as they may not contribute interesting data to the build graph
@@ -151,7 +171,7 @@ alright too.
 
 
 4. optional: Guess sources and targets
--------------------------------------
+----------------------------------------
 
 You can use the "guess" command to guess sources and targets, but that is just
 a guess. Guessing works ok on small well defined simple codebases, but might
@@ -223,55 +243,48 @@ Credits and related tools
 -------------------------
 
 This implementation of an strace-based build tracer is essentially an implementation
-of this papers:
+of these papers:
 
-Sander van der Burg published an article and paper:
+Sander van der Burg published a key article and paper:
 
- - http://sandervanderburg.blogspot.be/2012/04/dynamic-analysis-of-build-processes-to.html
- - "Discovering Software License Constraints:  Identifying a Binary's Sources by Tracing Build Processes"
- - http://www.st.ewi.tudelft.nl/~sander/pdf/publications/TUD-SERG-2012-010.pdf
- - By Sander van der Burg, Julius Davies, Eelco Dolstra,  Daniel M. German, Armijn Hemel.
- Technical Report TUD-SERG-2012-010, Software Engineering Research Group, Delft, The Netherlands, April 2012.  
+- http://sandervanderburg.blogspot.be/2012/04/dynamic-analysis-of-build-processes-to.html
+  "Discovering Software License Constraints:  Identifying a Binary's Sources by Tracing Build Processes"
+
+- http://www.st.ewi.tudelft.nl/~sander/pdf/publications/TUD-SERG-2012-010.pdf
+  By Sander van der Burg, Julius Davies, Eelco Dolstra,  Daniel M. German, Armijn Hemel.
+  Technical Report TUD-SERG-2012-010, Software Engineering Research Group, Delft, The Netherlands, April 2012.  
 
 
 Later, this similar paper relates the same approach:
 
- - "Tracing Software Build Processes to Uncover License Compliance Inconsistencies"
- - http://web.archive.org/web/20160329060541/http://shanemcintosh.org/assets/ase2014_vanderburg.pdf
- - By Sander van der Burg, Eelco Dolstra, Shane McIntosh, Julius Davies, Daniel M. German, and Armijn Hemel
+- "Tracing Software Build Processes to Uncover License Compliance Inconsistencies"
+  http://web.archive.org/web/20160329060541/http://shanemcintosh.org/assets/ase2014_vanderburg.pdf
+  By Sander van der Burg, Eelco Dolstra, Shane McIntosh, Julius Davies, Daniel M. German, and Armijn Hemel
 
 
 The Chromium test team built "swarming.client", a test isolation
 tools that was also a big inspiration for this tool too:
 
- - https://www.chromium.org/developers/testing/isolated-testing/infrastructure
- - https://chromium.googlesource.com/external/swarming.client/
+- https://www.chromium.org/developers/testing/isolated-testing/infrastructure
+- https://chromium.googlesource.com/external/swarming.client/
 
 
- - memoize.py and fabricate use strace to track file dependencies 
-using a similar approach to this tool. 
-  - https://github.com/kgaughan/memoize.py
-  - https://code.google.com/archive/p/fabricate/
+memoize.py and fabricate use strace to track file dependencies 
+using a similar approach to this tool:
 
-- And this article provides some good background on the same topic:
-https://news.ycombinator.com/item?id=9356433 :
+- https://github.com/kgaughan/memoize.py
+- https://code.google.com/archive/p/fabricate/
 
+- https://news.ycombinator.com/item?id=9356433 : This article provides some good
+  background on the same topic.
 
-
-http://buildaudit.sourceforge.net/ is a related build tracing tool that
-handles ptrace directly ass opposed to rely on strace for tracing. 
-
-
-Electric cloud is tool has some ways to track which files are accessed during a build
-using ptrace of LD_PRELOAD (or a custom file system)
- - https://electric-cloud.com/ 
+- http://buildaudit.sourceforge.net/ is a related build tracing tool that
+  handles ptrace directly ass opposed to rely on strace for tracing. 
 
 
 License
 =======
 
-* Apache-2.0 with an acknowledgement required to accompany the scan output.
-* Public domain CC-0 for reference datasets.
-* Multiple licenses (GPL2/3, LGPL, MIT, BSD, etc.) for third-party components. 
+* Apache-2.0
+* Multiple licenses (GPL2/3, LGPL, MIT, BSD, etc.) for third-party dependencies. 
 
-See the NOTICE.txt file for more details and the thirdparty/ directory.

@@ -1,5 +1,5 @@
 Tracing a build on Linux
-========================
+=========================
 
 TraceCode is a tool to trace the execution of a build, so you can learn which
 files are read, compiled, built and ultimately deployed.
@@ -8,20 +8,22 @@ This document provides guidelines on how to collect the trace a of build to
 analyze later with TraceCode.
 
 This trace is collected with an open source tool called strace. 
-strace is BSD- licensed and available at: 
-http://sourceforge.net/projects/strace/
+strace is BSD-licensed and available at: 
 
+https://github.com/strace/strace/
 
 You must use strace v.4.9 or later either from:
- - your Linux distribution (if it has strace 4.9 or higher)
- - built from sources from http://sourceforge.net/project/strace/
-   BUILDING INSTRUCTIONS FOR STRACE ARE PROVIDED IN SECTION 2.
+
+- your Linux distribution (if it has strace 4.9 or higher)
+- built from sources from http://sourceforge.net/project/strace/
+  BUILDING INSTRUCTIONS FOR STRACE ARE PROVIDED IN SECTION 2.
 
 
 0. Basic system requirements on the build host
-=============================
+========================================================
 
 You need first:
+
  * a Linux-based build host (the machine on which you run the build).
  * sudo or root access on this build host.
  * plenty of disk space, typically 100GB free space or more for some large builds
@@ -46,12 +48,14 @@ Additional reference information:
 
 
 1. Increase the PIDs limit of the build machine
-=============================
+===================================================
 
 To do this, run this configuration only once::
+
     $ sudo su -
     $ echo 4194303 > /proc/sys/kernel/pid_max
-    then exist root with Ctrl-D
+
+then exit root with Ctrl-D
 
 
 Additional reference information:
@@ -70,51 +74,59 @@ Additional reference information:
     may rollover to one if you use the default pid_max setting.  Very large
     and long running builds can spawn up to a million different processes.
 
-    You can check the PID max with::
+You can check the PID max with::
 
-        $ cat /proc/sys/kernel/pid_max
-        32768
+    $ cat /proc/sys/kernel/pid_max
+    32768
 
-    32768 is the typical default value on most Linux installations. To
-    increase the PID to 4194303 use the command below. (note: the value
-    4194303 is the highest supported value on 32 bit systems and is high
-    enough for all known cases)::
+32768 is the typical default value on most Linux installations. To
+increase the PID to 4194303 use the command below. (note: the value
+4194303 is the highest supported value on 32 bit systems and is high
+enough for all known cases)::
 
-        $ sudo su -
-        $ echo 4194303 > /proc/sys/kernel/pid_max
-        then exist root with Ctrl-D
+    $ sudo su -
+    $ echo 4194303 > /proc/sys/kernel/pid_max
+    then exist root with Ctrl-D
 
 
 
 2. Build and install strace
 =============================
+
 If you build strace from sources (as opposed to use a distro package for strace 4.9
 or higher) use these additional instructions.
 
 Install these packages:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- * basic packages installed on the build host (such as build-essential on 
-   debian) and libtool, automake and autoconf.
+Basic packages installed on the build host (such as build-essential on 
+debian) and libtool, automake and autoconf.
 
-   On Debian or Debian-derivatives such as Ubuntu you might need something
-   like:
-     sudo apt-get install build-essential automake autotools-dev autoconf \
-     libtool
+- On Debian or Debian-derivatives such as Ubuntu you might need something
+  like::
 
-   On RPM-based Linuxes such as Fedora or OpenSuse you might need something
-   like:
-     sudo yum groupinstall "Development Tools"
-     sudo yum install automake autotools autoconf libtool
+    sudo apt-get install build-essential automake autotools-dev autoconf \
+    libtool
+
+- On RPM-based Linuxes such as Fedora or OpenSuse you might need something
+  like::
+
+    sudo yum groupinstall "Development Tools"
+    sudo yum install automake autotools autoconf libtool
 
 Install the latest strace by building it from sources at:
-    http://sourceforge.net/project/strace/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    https://github.com/strace/strace/
 
 Additional reference information:
+
     DO NOT USE an strace package from an strace version before v4.9 if provided
     with your build host Linux distribution: it can be buggy at times or be an
     older version that does not contain the required features set.
 
 Build and install strace this way::
+
     wget http://master.dl.sourceforge.net/project/strace/strace/4.15/strace-4.15.tar.xz
     tar -xzf 4.15.tar.xz
     cd strace-4.15
@@ -124,36 +136,40 @@ Build and install strace this way::
 
 NOTE: installing strace globally in your system is optional.
 You can run it from its build location too.
+
 To install globally in /usr/local/bin/strace use::
+
     sudo make install
 
 
 3. Prepare the build you want to trace
-=============================
+==========================================
 
 3.1 Ensure your build is ready to run and properly configured.
------------------
+-------------------------------------------------------------------
+
 Wipe clean and/or disable any compilation cache (such as ccache, bref).
 Make clean or distclean or equivalent.
 
 
 Additional reference information:
-    You MUST ensure that the build is fully cleaned first. Run a make clean or
-    a similar command to ensure that all artifacts of previous build runs are
-    deleted including:
 
-     - clearing object caches if you use caching compiler such as ccache.
-     Use ccache --clear to clear a ccache cache.
+You MUST ensure that the build is fully cleaned first. Run a make clean or
+a similar command to ensure that all artifacts of previous build runs are
+deleted including:
 
-     - clearing download caches if you use library repositories fetched
-     remotely at build time such as with maven.
+- clearing object caches if you use caching compiler such as ccache.
+Use ccache --clear to clear a ccache cache.
 
-     - removing all intermediate and final compiled or built object, archives
-     or deployed images
+- clearing download caches if you use library repositories fetched
+remotely at build time such as with maven.
+
+- removing all intermediate and final compiled or built object, archives
+or deployed images
 
 
 3.2 Save a tarball of the initial development codebase before the build.
----------------------------------
+--------------------------------------------------------------------------------
 
 Create a tarball of the whole clean codebase BEFORE running the build. This
 can include a custom toolchain if you do not use the standard installed
@@ -177,6 +193,7 @@ Do a regular release build, NOT a debug build.
 
 
 Additional reference information:
+
     If your build requires more than one command, execute this process once
     for each command. Ensure that you create a NEW DISTINCT trace output
     directory (a.k.a. {tracing_dir} for each build command that you trace.
@@ -204,7 +221,7 @@ Additional reference information:
 
 
 4.1. Collect the build trace with strace
-----------------------------------------
+------------------------------------------------
 
 Trace each of your build commands with strace, replacing the names in braces
 {} with your actual build command and args, output directory and prefix. Use
@@ -212,11 +229,13 @@ $(which strace) if you installed strace globally or use the path to the strace
 build directory if you did not install strace.
 
 Execute your build under strace with this command::
+
     $(which strace) -ff -y -ttt -qq -a1 \
     -o {NEW EMPTY tracing_dir}/{trace prefix: project name, build number or version} \
     {build command}
 
 For instance to run a simple make -j2, use this command::
+
     mkdir ~/mybuild-trace1
     $(which strace) -ff -y -ttt -qq -a1 -o ~/mybuild-trace1/myprod-v2 make -j2
 
@@ -254,7 +273,7 @@ that your build did not have any error.
 
 
 5. Collect archives for the built codebase, traces and build outputs.
-=============================
+==========================================================================
 
 Create a tarball of the built codebase after running the build including all
 the deployed codebase directories and the final deployed images or archives.
