@@ -1,9 +1,0 @@
-version: '{build}'
-
-install:
-    - configure
-
-build: off
-
-test_script:
-    - py.test -vvs src tests

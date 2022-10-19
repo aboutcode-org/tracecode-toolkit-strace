@@ -1,5 +1,0 @@
-version: 0.6.2b1
-download_url: https://github.com/pombredanne/docopt/archive/0a456e9ac876fb42d6e19e11a14a2d037aac8b1d.tar.gz
-owner: Vladimir Keleshev
-copyright: Copyright (c) 2012 Vladimir Keleshev, <vladimir@keleshev.com>
-license_text_file: docopt.LICENSE
