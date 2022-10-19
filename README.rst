@@ -19,13 +19,13 @@ See README-build-tracing.rst for tracing a build
 2. System requirements and installation
 ---------------------------------------
 
-Ensure you have Python 2.7 installed::
+Ensure you have Python installed::
     python -v
 
 Install it as needed if not installed, ensuring that it is in your path. See you local Linux 
 distributor for details.
 
-Ensure you have Graphviz 2.36+ installed and in your path::
+Ensure you have Graphviz installed and in your path::
     dot -v
 
 Install it as needed if not installed, ensuring that it is in your path.

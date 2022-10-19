@@ -8,7 +8,7 @@ This document provides guidelines on how to collect the trace a of build to
 analyze later with TraceCode.
 
 This trace is collected with an open source tool called strace. 
-strace is BSD-licensed and available at: 
+strace is LGPL-licensed and available at: 
 
 https://github.com/strace/strace/
 
