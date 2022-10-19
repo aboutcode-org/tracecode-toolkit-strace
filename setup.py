@@ -5,9 +5,6 @@
 # Copyright (c) 2017 nexB Inc. http://www.nexb.com/ - All rights reserved.
 #
 
-from __future__ import absolute_import
-from __future__ import print_function
-
 from glob import glob
 from os.path import basename
 from os.path import splitext
@@ -18,13 +15,13 @@ from setuptools import setup
 
 
 setup(
-    name='tracecode-build',
-    version='0.9.0',
-    license='Apache-2.0 with Tracecode acknowledgment',
+    name='tracecode-toolkit-strace',
+    version='0.10.0',
+    license='Apache-2.0',
     long_description='TraceCode Dynamic build tracer',
     author='nexB Inc.',
     author_email='info@aboutcode.org',
-    url='https://github.com/nexB/tracecode-build',
+    url='https://github.com/nexB/tracecode-toolkit-strace',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
@@ -34,9 +31,8 @@ setup(
         # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Topic :: Utilities',
     ],
     keywords=[
