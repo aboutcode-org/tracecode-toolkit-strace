@@ -1,18 +1,18 @@
-global-exclude *.py[co] __pycache__
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]
-
 graft src
 graft tests
 
-include LICENSE
-include MANIFEST.in
+include *.LICENSE
+include NOTICE
+include *.ABOUT
+include *.toml
+include *.yml
 include *.rst
-include setup.py
-include setup.cfg
-include configure
-include configure.bat
-include fabfile.py
+include setup.*
+include configure*
+include requirements*
+include .git*
+
 recursive-include etc *
 recursive-include docs *
-recursive-include samples *
+
+global-exclude *.py[co] __pycache__ *.*~
