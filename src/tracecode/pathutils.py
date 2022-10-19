@@ -9,7 +9,6 @@
 
 import genericpath
 
-
 """
 Common prefix and suffix functions.
 """
@@ -21,7 +20,12 @@ def common_prefix(s1, s2):
     """
     if not s1 or not s2:
         return None
-    common = genericpath.commonprefix((s1, s2,))
+    common = genericpath.commonprefix(
+        (
+            s1,
+            s2,
+        )
+    )
     if common:
         return common
     else:
@@ -66,8 +70,8 @@ def split(p):
     """
     if not p:
         return []
-    p = p.strip('/').split('/')
-    return [] if p == [''] else p
+    p = p.strip("/").split("/")
+    return [] if p == [""] else p
 
 
 def common_segments(p1, p2, common_func):
@@ -76,5 +80,5 @@ def common_segments(p1, p2, common_func):
     """
     common = common_func(split(p1), split(p2))
     lgth = len(common) if common else 0
-    common = '/'.join(common) if common else None
+    common = "/".join(common) if common else None
     return common, lgth
