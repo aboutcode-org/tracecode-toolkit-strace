@@ -3,8 +3,8 @@ Changelog
 =========
 
 
-0.10.0 (2022-10-19)
-------------------
+0.10.0 (2022-10-20)
+-------------------
 
 * Update to Python 3, drop Python 2
 * Adopt skeleton

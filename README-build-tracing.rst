@@ -97,7 +97,7 @@ If you build strace from sources (as opposed to use a distro package for strace 
 or higher) use these additional instructions.
 
 Install these packages:
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------
 
 Basic packages installed on the build host (such as build-essential on 
 debian) and libtool, automake and autoconf.
@@ -115,7 +115,7 @@ debian) and libtool, automake and autoconf.
     sudo yum install automake autotools autoconf libtool
 
 Install the latest strace by building it from sources at:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------
 
     https://github.com/strace/strace/
 
