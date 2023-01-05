@@ -17,11 +17,13 @@ import os
 import shutil
 import stat
 import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
 from os.path import dirname
 from os.path import join
+from pathlib import Path
 from queue import Empty as Queue_Empty
 from queue import Queue
 
@@ -61,6 +63,9 @@ this and return the temp directory where this was extracted. This temp dir will
 be deleted after the test run automatically.
 """
 
+sys_platform = str(sys.platform).lower()
+on_linux = sys_platform.startswith('linux')
+
 
 def to_os_native_path(s):
     """Normalize a path to use the native OS path separator."""
@@ -68,6 +73,7 @@ def to_os_native_path(s):
 
 
 class BaseTestCase(unittest.TestCase):
+
     def setUp(self):
         if not hasattr(self, "to_delete"):
             self.to_delete = []
@@ -195,8 +201,17 @@ class BaseTestCase(unittest.TestCase):
                 expected = fin.read().splitlines()
                 assert expected == proc.pformat().splitlines()
 
+    def run_tracecode_command(self, args, cwd=ROOT_DIR):
+        args = args or []
+        args = ["tracecode"] + args
+        try:
+            return subprocess.check_output(args, cwd=cwd)
+        except subprocess.CalledProcessError as e:
+            raise Exception(" ".join(args), e.output) from e
+
 
 class BasicTest(BaseTestCase):
+
     def test_validate_traces(self):
         trace_dir = self.extract_trace("validate")
         rootpid, traces = tracecode.validate_traces(trace_dir)
@@ -1045,16 +1060,12 @@ class BasicTest(BaseTestCase):
         pl = pickle.loads(pd)
         assert proc.children == pl.children
 
-    def run_tracecode_command(self, args):
-        return subprocess.call(["tracecode"] + args, cwd=ROOT_DIR)
-
     def test_command_line_parse_simple(self):
         input_dir = self.extract_trace("patchelf_command")
         cwd = "/home/nexb/tools/strace/strace-4.8"
         output_dir = self.get_temp_dir()
-        args = ["-q", "--cwd=%s" % cwd, "parse", input_dir, output_dir]
-        ret = self.run_tracecode_command(args)
-        assert ret == 0, ret
+        args = ["-q", f"--cwd={cwd}", "parse", input_dir, output_dir]
+        self.run_tracecode_command(args)
         files = sorted(os.listdir(output_dir))
         assert 18 == len(files)
 
@@ -1064,14 +1075,13 @@ class BasicTest(BaseTestCase):
         output_dir = self.get_temp_dir()
         args = [
             "-q",
-            "--cwd=%s" % cwd,
+            f"--cwd={cwd}",
             '--ignored_reads="/blabbla/*"',
             "parse",
             input_dir,
             output_dir,
         ]
-        ret = self.run_tracecode_command(args)
-        assert ret == 0, ret
+        self.run_tracecode_command(args)
         procs = tracecode.load_from_dir(output_dir)
         ar = self.get_tst_path(join("patchelf_command2", "expected_pformats.tar.bz2"))
         expected_pf = join(self.extract_archive(ar), "expected_pformats")
@@ -1097,15 +1107,14 @@ class BasicTest(BaseTestCase):
         irf = self.get_tst_path("patchelf_command2/ignored_reads.lst")
         args = [
             "-q",
-            "--cwd=%s" % cwd,
+            f"--cwd={cwd}",
             "--ignored_reads_from=%s" % irf,
             '--ignored_reads="/bar/*"',
             "parse",
             input_dir,
             output_dir,
         ]
-        ret = self.run_tracecode_command(args)
-        assert ret == 0, ret
+        self.run_tracecode_command(args)
         procs = tracecode.load_from_dir(output_dir)
         ar = self.get_tst_path(join("patchelf_command2", "expected_pformats.tar.bz2"))
         extracted = self.extract_archive(ar)
@@ -1448,6 +1457,7 @@ arch_prctl
         assert result.splitlines() == expected.splitlines()
 
     def test_incomplete_trace_parsing_does_not_hangs_but_timesout(self):
+
         def timeoutfunc(x):
             # short timeout
             return 1
@@ -1462,6 +1472,7 @@ arch_prctl
             pass
 
     def test_incomplete_trace_parsing_does_not_hangs_but_timesout_todir(self):
+
         def timeoutfunc(x):
             # short timeout
             return 1
@@ -1513,6 +1524,7 @@ arch_prctl
 
 
 class PathMatchingTest(BaseTestCase):
+
     def check_match(self, paths1, paths2, expected):
         matches = list(tracecode.match_paths(paths1, paths2))
         assert sorted(matches) == sorted(expected)
@@ -1563,6 +1575,7 @@ class PathMatchingTest(BaseTestCase):
         self.check_match(paths1, paths2, expected)
 
     def test_match_paths_long(self):
+
         def get_list(path):
             f = self.get_tst_path("match_path_long/" + path)
             return sorted(open(f).read().splitlines())
@@ -1581,6 +1594,7 @@ class PathMatchingTest(BaseTestCase):
 
 
 class FilesetTest(BaseTestCase):
+
     def test_in_fileset_basic(self):
         assert tracecode.in_fileset("/nexb/src/", tuple())
         assert tracecode.in_fileset("/nexb/src/", None)
@@ -1670,8 +1684,93 @@ class EndToEndTest(BaseTestCase):
             test_name, cwd, with_output_dir=True, clean=True, parallel=True, regen=False
         )
 
+    @unittest.skipif(not (on_linux and tracecode.has_dot()), "Install Graphviz to run tests")
+    def test_trace_from_scratch_end_to_end(self):
+        # test a live strace run and each read/write commands
+        test_dir = self.get_temp_dir(delete=True)
+        test_file = Path(test_dir) / "hello_world.c"
+        with open(test_file, "w")  as o:
+            o.write("""
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello World!\\n");
+}
+""")
+
+        trace_dir = self.get_temp_dir(delete=True)
+
+        target_file = f"{test_dir}/hello_world"
+        args = [
+            "strace", "-ff", "-y", "-ttt", "-a1",
+            "-o", f"{trace_dir}/trace",
+            "gcc", f"{test_file}", "-o", target_file
+        ]
+
+        try:
+            subprocess.check_output(args,
+                cwd=test_dir,
+                shell=False,
+            )
+        except subprocess.CalledProcessError as e:
+            raise Exception(' '.join(args), e.output) from e
+
+        assert os.path.exists(target_file)
+        cwd = "/home/nexb/tools/strace/strace-4.8"
+        output_dir = self.get_temp_dir()
+
+        # tracecode [options] validate  TRACE_DIR
+        self.run_tracecode_command([f"--cwd={cwd}", "validate", trace_dir])
+
+        # tracecode [options] parse     TRACE_DIR   PARSED_DIR
+        # tracecode parse /tmp/outputs /tmp/parsed_outputs
+        parsed_dir = self.get_temp_dir()
+        self.run_tracecode_command([f"--cwd={cwd}", "parse", trace_dir, parsed_dir])
+        assert os.listdir(parsed_dir)
+
+        # tracecode [options] filter    PARSED_DIR  [NEW_PARSED_DIR]
+        parsed_dir2 = self.get_temp_dir()
+        self.run_tracecode_command([f"--cwd={cwd}", "--defaults", "filter", parsed_dir, parsed_dir2])
+        assert os.listdir(parsed_dir2)
+
+        # tracecode list /tmp/parsed_outputs /tmp/a/reads /tmp/b/writes
+        reads_file = os.path.join(output_dir, "reads.txt")
+        writes_file = os.path.join(output_dir, "writes.txt")
+        self.run_tracecode_command([f"--cwd={cwd}", "list", parsed_dir, reads_file, writes_file])
+        assert os.path.exists(reads_file)
+        assert os.path.exists(writes_file)
+
+        # tracecode [options] guess     PARSED_DIR  SOURCES_FILE  TARGETS_FILE
+        sources_file = os.path.join(output_dir, "sources.txt")
+        targets_file = os.path.join(output_dir, "targets.txt")
+        self.run_tracecode_command([f"--cwd={cwd}", "guess", parsed_dir, sources_file, targets_file])
+        assert os.path.exists(sources_file)
+        assert os.path.exists(targets_file)
+
+        # tracecode [options] analyze PARSED_DIR  ANALYSIS_FILE
+        analysis_file = os.path.join(output_dir, "analysis.csv")
+        self.run_tracecode_command([
+            f"--cwd={cwd}", "analyze",
+            f"--sources_from={sources_file}",
+            f"--targets={target_file}",
+            parsed_dir, analysis_file
+        ])
+        assert os.path.exists(analysis_file)
+
+        # tracecode [options] inventory PARSED_DIR  INV_FILE
+        inventory_file = os.path.join(output_dir, "inventory.csv")
+        self.run_tracecode_command([f"--cwd={cwd}", "inventory", parsed_dir, inventory_file])
+        assert os.path.exists(inventory_file)
+
+        # tracecode [options] graphic   PARSED_DIR  GRAPH_FILE
+        graph_file = os.path.join(output_dir, "graph.txt")
+        self.run_tracecode_command([f"--cwd={cwd}", "graphic", parsed_dir, graph_file])
+        assert os.path.exists(f"{graph_file}.pdf")
+
 
 class AltGraphTest(BaseTestCase):
+
     def test_altgraph_subgraph_bug(self):
         from altgraph.Graph import Graph
 
@@ -1803,6 +1902,7 @@ class GraphicTest(BaseTestCase):
 
 
 class ListTest(BaseTestCase):
+
     def test_reads_writes_paths(self):
         cwd = "/home/nexb"
         input_dir = self.get_tst_path("lists/trace")
@@ -1939,8 +2039,8 @@ class ListTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            + conf.GCC_DEPEND_FILES
-            + conf.GCC_INCLUDES
+            +conf.GCC_DEPEND_FILES
+            +conf.GCC_INCLUDES
         )
         stgs = conf.DefaultSettings()
         stgs.ignored_reads += extra_read_ignored
@@ -1989,6 +2089,7 @@ class ListTest(BaseTestCase):
 
 
 class TraceFullGraphAnalysisTest(BaseTestCase):
+
     def test_file_sets_sources_and_targets_in_graph(self):
         input_dir = self.extract_trace("file_graph_analysis_patchelf")
         output_dir = None
@@ -2095,8 +2196,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            + conf.GCC_DEPEND_FILES
-            + conf.GCC_INCLUDES
+            +conf.GCC_DEPEND_FILES
+            +conf.GCC_INCLUDES
         )
         stgs = conf.DefaultSettings()
 
@@ -2175,8 +2276,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            + conf.GCC_DEPEND_FILES
-            + conf.GCC_INCLUDES
+            +conf.GCC_DEPEND_FILES
+            +conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2211,8 +2312,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            + conf.GCC_DEPEND_FILES
-            + conf.GCC_INCLUDES
+            +conf.GCC_DEPEND_FILES
+            +conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2232,8 +2333,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "*/cups/Dependencies",
                 "*/Makedefs",
             )
-            + conf.GCC_DEPEND_FILES
-            + conf.GCC_INCLUDES
+            +conf.GCC_DEPEND_FILES
+            +conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2263,6 +2364,7 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
 
 
 class DumpTest(BaseTestCase):
+
     def test_dump(self):
         cwd = "/home/nexb/tools/patchelf/patchelf-0.5"
         test_name = "dump_patchelf"
@@ -2284,6 +2386,7 @@ class DumpTest(BaseTestCase):
 
 
 class ConfTest(BaseTestCase):
+
     def test_Settings_object_can_be_pickled(self):
         stgs = conf.DefaultSettings()
         import pickle
@@ -2327,6 +2430,7 @@ targets=somefile
 
 
 class TestPathUtils(unittest.TestCase):
+
     def test_common_path_prefix1(self):
         test = pathutils.common_path_prefix("/a/b/c", "/a/b/c")
         assert ("a/b/c", 3) == test
