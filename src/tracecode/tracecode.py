@@ -1771,7 +1771,7 @@ def as_graph(processes, settings):
     Return a graph from a list of process objects.
     """
     logger.info("Building graph ...")
-    from altgraph.Graph import Graph
+    from tracecode._vendor.altgraph.Graph import Graph
 
     graph = Graph()
     ##############################################################################
@@ -1816,7 +1816,7 @@ def as_file_graph(processes, settings):
     connects files with an edge representing a read-from, write-to operation.
     """
     logger.info("Building graph ..")
-    from altgraph.Graph import Graph
+    from tracecode._vendor.altgraph.Graph import Graph
 
     graph = Graph()
     for proc in processes:
@@ -1977,7 +1977,7 @@ def save_graphic(graph, file_name, file_type="pdf", mode="dot"):
         logger.error("Please install graphviz from http://graphviz.org/")
         return
 
-    from altgraph import Dot
+    from tracecode._vendor.altgraph import Dot
 
     # TODO: add a style for commands and nodes
     def node_visitor(node):
@@ -2378,7 +2378,7 @@ def debug_print(dir_path, pid):
 ##############################################################################
 # Command line processing
 
-from docopt import docopt
+from tracecode._vendor.docopt import docopt
 
 NOTICE = (
     """TraceCode version %s

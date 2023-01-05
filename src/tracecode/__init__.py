@@ -7,4 +7,4 @@
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
-__version__ = "0.10.0"
+__version__ = "0.20.0"

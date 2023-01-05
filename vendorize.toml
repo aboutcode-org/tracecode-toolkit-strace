@@ -1,0 +1,5 @@
+target = "src/tracecode/_vendor"
+packages = [
+    "docopt",
+    "altgraph",
+]

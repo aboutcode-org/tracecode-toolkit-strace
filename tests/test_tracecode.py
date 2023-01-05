@@ -27,6 +27,8 @@ from pathlib import Path
 from queue import Empty as Queue_Empty
 from queue import Queue
 
+import pytest
+
 from tracecode import conf
 from tracecode import pathutils
 from tracecode import tracecode
@@ -1684,7 +1686,7 @@ class EndToEndTest(BaseTestCase):
             test_name, cwd, with_output_dir=True, clean=True, parallel=True, regen=False
         )
 
-    @unittest.skipif(not (on_linux and tracecode.has_dot()), "Install Graphviz to run tests")
+    @pytest.mark.skipif(not (on_linux and tracecode.has_dot()), reason="Run on Linux, with GCC and Graphviz to run this test")
     def test_trace_from_scratch_end_to_end(self):
         # test a live strace run and each read/write commands
         test_dir = self.get_temp_dir(delete=True)
@@ -1772,7 +1774,7 @@ int main(void)
 class AltGraphTest(BaseTestCase):
 
     def test_altgraph_subgraph_bug(self):
-        from altgraph.Graph import Graph
+        from tracecode._vendor.altgraph.Graph import Graph
 
         graph = Graph()
         graph.add_node("A")
@@ -1791,7 +1793,7 @@ class AltGraphTest(BaseTestCase):
         assert subgraph_forward == whole_graph
 
     def test_altgraph_nodes_connectivity(self):
-        from altgraph.Graph import Graph
+        from tracecode._vendor.altgraph.Graph import Graph
 
         graph = Graph()
         graph.add_edge("A", "B")
