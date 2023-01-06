@@ -54,24 +54,24 @@ DEFAULT_ERRORS = [
     # --- SIGPIPE {si_signo=SIGPIPE, si_code=SI_USER, si_pid=3908887, si_uid=1001} ---
     # --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_ACCERR, si_addr=0x2aaaaaacf000} ---
     # and other similar signals
-    ".*--- SIG.*",
+    r".*--- SIG.*",
     # +++ killed by SIGPIPE +++
-    ".*\+\+\+ killed by .* \+\+\+$",
+    r".*\+\+\+ killed by .* \+\+\+$",
     # rare but this can happen
-    ".*core dumped.*",
+    r".*core dumped.*",
     # +++ exited with 141 +++
     # NOTE: exit code should be tracked if the process failed?? to return 0??
-    ".*\+\+\+ exited with .* \+\+\+$",
+    r".*\+\+\+ exited with .* \+\+\+$",
     # futex(0x2aaaac4bd9d0, FUTEX_WAIT, 3963568, NULL) = ? <unavailable>
-    ".* <unavailable>$",
+    r".* <unavailable>$",
     # exit_group(141) = ?
-    ".* exit_group.* = .*$",
+    r".* exit_group.* = .*$",
     # _exit(0) = ?
-    ".* _exit\(.* = .*$",
+    r".* _exit\(.* = .*$",
     # futex(0x2aaaac4bd9d0, FUTEX_WAIT, 3663942, NULL <unfinished ...>
     # note that since we follow processes and get per-proc straces
     # futexes are typically the only unfinished business
-    ".* <unfinished \.\.\.>$",
+    r".* <unfinished \.\.\.>$",
     # The following are found when a line ends with ")"
     # which happens for failed syscalls when there is an errno returned that
     # strace was able to decode
@@ -97,7 +97,7 @@ DEFAULT_ERRORS = [
     # (Inappropriate ioctl for device)
     # (Operation not permitted)
     # and many more
-    "^.*\)$",
+    r"^.*\)$",
 ]
 
 ###############################################################################
