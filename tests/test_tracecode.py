@@ -205,7 +205,7 @@ class BaseTestCase(unittest.TestCase):
 
     def run_tracecode_command(self, args, cwd=ROOT_DIR):
         args = args or []
-        args = ["tracecode"] + args
+        args = ["venv/bin/tracecode"] + args
         try:
             return subprocess.check_output(args, cwd=cwd)
         except subprocess.CalledProcessError as e:
