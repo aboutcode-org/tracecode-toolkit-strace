@@ -2353,7 +2353,7 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
 
         self.analyze_d2d(test_name, cwd, settings=stgs, regen=False)
 
-    @pytest.mark.skipif(on_windows, reason= "This fails on Windows for unknown reasons")
+    @pytest.mark.skipif(on_windows, reason="This fails on Windows for unknown reasons")
     def test_analyze_multiplexed_copy_d2d(self):
         test_name = "d2d_multiplexed_cp"
         stgs = conf.BaseSettings()
@@ -2382,7 +2382,7 @@ class DumpTest(BaseTestCase):
         if regen:
             shutil.copy(resloc, exploc)
         expected = open(exploc).read()
-        assert sorted(results.splitlines()) == sorted(expected.splitlines())
+        assert sorted(l for l in results.splitlines() if l) == sorted(expected.splitlines())
 
 
 class ConfTest(BaseTestCase):
