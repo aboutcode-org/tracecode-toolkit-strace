@@ -9,19 +9,26 @@ jobs:
 
     - template: etc/ci/azure-posix.yml
       parameters:
-          job_name: ubuntu18_cpython
-          image_name: ubuntu-18.04
-          python_versions: ['3.6', '3.7', '3.8', '3.9', '3.10']
+          job_name: ubuntu22_cpython
+          image_name: ubuntu-22.04
+          python_versions: ['3.8', '3.9', '3.10']
           test_suites:
-              all: venv/bin/pytest -n 2 -vvs
+              all: |
+                sudo apt-get -y update
+                sudo apt-get -y install build-essential strace graphviz
+                venv/bin/pytest -n 2 -vvs
+
 
     - template: etc/ci/azure-posix.yml
       parameters:
           job_name: ubuntu20_cpython
           image_name: ubuntu-20.04
-          python_versions: ['3.6', '3.7', '3.8', '3.9', '3.10']
+          python_versions: ['3.8', '3.9', '3.10']
           test_suites:
-              all: venv/bin/pytest -n 2 -vvs
+              all: |
+                sudo apt-get -y update
+                sudo apt-get -y install build-essential strace graphviz
+                venv/bin/pytest -n 2 -vvs
 
     - template: etc/ci/azure-posix.yml
       parameters:
@@ -36,6 +43,14 @@ jobs:
           job_name: macos11_cpython
           image_name: macos-11
           python_versions: ['3.7', '3.8', '3.9', '3.10']
+          test_suites:
+              all: venv/bin/pytest -n 2 -vvs
+
+    - template: etc/ci/azure-posix.yml
+      parameters:
+          job_name: macos12_cpython
+          image_name: macos-12
+          python_versions: ['3.8', '3.9', '3.10']
           test_suites:
               all: venv/bin/pytest -n 2 -vvs
 

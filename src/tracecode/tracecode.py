@@ -1771,7 +1771,7 @@ def as_graph(processes, settings):
     Return a graph from a list of process objects.
     """
     logger.info("Building graph ...")
-    from altgraph.Graph import Graph
+    from tracecode._vendor.altgraph.Graph import Graph
 
     graph = Graph()
     ##############################################################################
@@ -1816,7 +1816,7 @@ def as_file_graph(processes, settings):
     connects files with an edge representing a read-from, write-to operation.
     """
     logger.info("Building graph ..")
-    from altgraph.Graph import Graph
+    from tracecode._vendor.altgraph.Graph import Graph
 
     graph = Graph()
     for proc in processes:
@@ -1977,7 +1977,7 @@ def save_graphic(graph, file_name, file_type="pdf", mode="dot"):
         logger.error("Please install graphviz from http://graphviz.org/")
         return
 
-    from altgraph import Dot
+    from tracecode._vendor.altgraph import Dot
 
     # TODO: add a style for commands and nodes
     def node_visitor(node):
@@ -2294,7 +2294,7 @@ def save_file_lists_with_counts(parsed_dir, inv_file):
     import csv
 
     logger.info("Saving file lists ...")
-    with open(inv_file) as out_file:
+    with open(inv_file, "w") as out_file:
         wrtr = csv.writer(out_file)
         for item in file_rw_counts(procs):
             wrtr.writerow(item)
@@ -2314,7 +2314,7 @@ def save_sorted(file_out, seq):
     """
     Write sorted seq to file_out file, one line per element.
     """
-    with open(file_out) as fo:
+    with open(file_out, "w") as fo:
         fo.write("\n".join(sorted(seq)))
 
 
@@ -2355,7 +2355,7 @@ def analyze_deployment_graph_from_dir(dir_path, settings):
 def analyze_deployment_graph_from_dir_to_file(dir_path, out_file, settings):
     import csv
 
-    with open(out_file) as csvfile:
+    with open(out_file, "w") as csvfile:
         wrtr = csv.writer(csvfile)
         for src_tgt in analyze_deployment_graph_from_dir(dir_path, settings):
             wrtr.writerow(src_tgt)
@@ -2378,7 +2378,7 @@ def debug_print(dir_path, pid):
 ##############################################################################
 # Command line processing
 
-from docopt import docopt
+from tracecode._vendor.docopt import docopt
 
 NOTICE = (
     """TraceCode version %s
@@ -2458,10 +2458,10 @@ Commands:
  analyze
   Determine sources to targets files transformations. Read parsed traces in
   PARSED_DIR and save output to ANALYSIS_FILE as lines of comma-separated
-  <source file path>,<target file path> using the sources(_from) and
-  targets(_from) options if specified. Otherwise sources and targets are
-  guessed using the guess command. File transformations are analyzed from
-  targets to sources: there are typically more sources than targets.
+  <source file path>,<target file path>. Use the --sources PATH or
+  --sources_from FILE options and the --targets PATH or --targets_from FILE
+  options as sources and targets. File transformations are analyzed from targets
+  to sources: there are typically more sources than targets.
 
  graphic
   Create file transformations graphic. Read parsed traces in PARSED_DIR and
