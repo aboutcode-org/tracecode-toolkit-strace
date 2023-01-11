@@ -2,6 +2,14 @@
 Changelog
 =========
 
+0.21.0 (2023-01-11)
+-------------------
+
+* Correct file write handling in CLI
+* Add tests
+* Vendor dependencies
+
+
 
 0.10.0 (2022-10-20)
 -------------------
