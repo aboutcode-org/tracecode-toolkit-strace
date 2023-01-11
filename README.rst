@@ -57,7 +57,7 @@ Finally run the built-in selftest to verify your installation::
 
 One debian::
 
-sudo apt-get strace
+    sudo apt-get strace
 
 
 5. Analyze your build
