@@ -5,7 +5,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/tracecode-toolkit-strace for support or download.
+# See https://github.com/aboutcode-org/tracecode-toolkit-strace for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -85,7 +85,7 @@ def version():
     print(
         """
 TraceCode:tracer Version: %s
-Copyright (c) nexB Inc. All rights reserved. https://github.com/nexB/tracecode-build
+Copyright (c) nexB Inc. All rights reserved. https://github.com/aboutcode-org/tracecode-build
 """
         % __version__
     )
@@ -128,7 +128,8 @@ def main(args, opts):
     odir = args[1]
     output_dir = os.path.abspath(os.path.normpath(os.path.expanduser(odir)))
     if not os.path.exists(output_dir) or not os.path.isdir(output_dir):
-        print("Output directory %(odir)s does not exist or " "is not a directory." % locals())
+        print(
+            "Output directory %(odir)s does not exist or " "is not a directory." % locals())
         sys.exit(errno.EINVAL)
     if os.listdir(output_dir):
         print("Output directory %(odir)s must be empty." % locals())

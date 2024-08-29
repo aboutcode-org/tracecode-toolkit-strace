@@ -5,7 +5,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/tracecode-toolkit-strace for support or download.
+# See https://github.com/aboutcode-org/tracecode-toolkit-strace for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -15,6 +15,7 @@ TraceCode is a tool to analyze the graph of file transformations from a
 traced command, typically a build command.
 """
 
+from tracecode._vendor.docopt import docopt
 import collections
 import copy
 import errno
@@ -250,7 +251,8 @@ def parse_raw_traces(
             )
         else:
             # we process serially, for debugging and tests
-            _res = parse_trace_file(proc, trace_file, todo, done, output_dir, settings)
+            _res = parse_trace_file(
+                proc, trace_file, todo, done, output_dir, settings)
 
     # wait for all processes to complete
     duration = time.time() - start
@@ -269,9 +271,9 @@ def parse_raw_traces(
 
     # we return a pid-sorted list
     if output_dir:
-        key = lambda x: x
+        def key(x): return x
     else:
-        key = lambda x: x.pid
+        def key(x): return x.pid
 
     done = sorted(as_list(done), key=key)
     len_done = len(done)
@@ -291,7 +293,8 @@ def parse_raw_traces(
         first_orphan_pid = orphans[0]
 
         # get the details of the first orphaned process
-        first_orphan_proc = Process(pid=first_orphan_pid, ppid=None, cwd=None, init_exec=None)
+        first_orphan_proc = Process(
+            pid=first_orphan_pid, ppid=None, cwd=None, init_exec=None)
         o_done = Queue()
         o_trace_file = traces[proc.pid]
 
@@ -367,7 +370,8 @@ def parse_trace_file(proc, trace_file, todo, done, output_dir=None, settings=Non
                 current_line = line
                 child = parse_line(line, proc, settings)
                 if child:
-                    logger.debug("parse_trace_file: adding new child: " "%(child)r." % locals())
+                    logger.debug(
+                        "parse_trace_file: adding new child: " "%(child)r." % locals())
                     todo.put(child)
                 ln += 1
 
@@ -380,7 +384,8 @@ def parse_trace_file(proc, trace_file, todo, done, output_dir=None, settings=Non
         else:
             done.put(proc)
     except Exception as e:
-        msg = "In parse_trace_file for pid:%r at line %d: %r: %r" % (proc.pid, ln, current_line, e)
+        msg = "In parse_trace_file for pid:%r at line %d: %r: %r" % (
+            proc.pid, ln, current_line, e)
         logger.error(msg)
         raise
         return
@@ -635,7 +640,8 @@ def parse_line(line, process, settings):
         # such as not ending with a clean return code
         if collect_stats:
             process.line_parsing_errors_count += 1
-        logger.error("parse_line: Unable to parse pid: %(proc_pid)r, " "line: %(line)r" % locals())
+        logger.error(
+            "parse_line: Unable to parse pid: %(proc_pid)r, " "line: %(line)r" % locals())
         return
 
     # decode, normalize and resolve paths and descriptors
@@ -767,7 +773,8 @@ def memoize(fun):
 
     @functools.wraps(fun)
     def memoized(*args):
-        args = tuple(tuple(arg) if isinstance(arg, list) else arg for arg in args)
+        args = tuple(tuple(arg) if isinstance(
+            arg, list) else arg for arg in args)
         try:
             return memos[args]
         except KeyError:
@@ -792,7 +799,8 @@ def includes_excludes(fileset):
     """Return set of includes and sets of excludes for a fileset"""
     includes = set(pat for pat in fileset if pat and not pat.startswith(MINUS))
 
-    excludes = set(pat[1:].strip() for pat in fileset if pat and pat.startswith(MINUS) and pat[1:])
+    excludes = set(pat[1:].strip()
+                   for pat in fileset if pat and pat.startswith(MINUS) and pat[1:])
     return includes, excludes
 
 
@@ -823,13 +831,16 @@ def in_fileset(path, fileset):
 
     try:
         inclusions, exclusions = includes_excludes(fileset)
-        included = path in inclusions or any(fnmatch.fnmatch(path, pat) for pat in inclusions)
+        included = path in inclusions or any(
+            fnmatch.fnmatch(path, pat) for pat in inclusions)
 
-        excluded = path in exclusions or any(fnmatch.fnmatch(path, pat) for pat in exclusions)
+        excluded = path in exclusions or any(
+            fnmatch.fnmatch(path, pat) for pat in exclusions)
 
     except Exception:
         fs = list(fileset)[:5]
-        logger.error("in_fileset: path: %(path)r fileset: %(fs)r..." % locals())
+        logger.error(
+            "in_fileset: path: %(path)r fileset: %(fs)r..." % locals())
         raise
     logger.debug(
         "in_fileset: path: %(path)r is included:%(included)r and "
@@ -923,7 +934,8 @@ def parse_entry(ln):
         # the meaning of args and result code is function-dependent
         return Entry(tstamp, result, func, decode_args(args))
     except ValueError as e:
-        logger.error("In parse_entry: Ignored parsing error" " for line: %(ln)r: %(e)r" % locals())
+        logger.error(
+            "In parse_entry: Ignored parsing error" " for line: %(ln)r: %(e)r" % locals())
 
 
 # catch things like , [/* 65 vars */]
@@ -1033,7 +1045,8 @@ def resolve_descriptors(entry, check_num=False):
     return warn
 
 
-descriptor = re.compile(r"^" r"(?P<fd_num>\d+)" r"<" r"(?P<path>.*)" r">$").match
+descriptor = re.compile(
+    r"^" r"(?P<fd_num>\d+)" r"<" r"(?P<path>.*)" r">$").match
 
 
 @memoize
@@ -1156,7 +1169,8 @@ def norm_path(path, cwd):
 Exec = collections.namedtuple("Exec", "command args tstamp")
 
 # An atomic rename or copy-like operation with a src and target paths
-Readwrite = collections.namedtuple("Readwrite", "source target start_tstamp end_tstamp")
+Readwrite = collections.namedtuple(
+    "Readwrite", "source target start_tstamp end_tstamp")
 
 # An operation, where a command in a process read sources and writes targets
 # at some time stamps
@@ -1256,7 +1270,8 @@ class Process(object):
 
         indent = "  "
         reads = "\n".join(indent + f for f in self.as_sorted_paths(self.reads))
-        writes = "\n".join(indent + f for f in self.as_sorted_paths(self.writes))
+        writes = "\n".join(
+            indent + f for f in self.as_sorted_paths(self.writes))
         readwrites = "\n".join(
             indent
             + repr(
@@ -1267,7 +1282,8 @@ class Process(object):
             )
             for r in self.readwrites
         )
-        children = "\n".join(indent + str(f) for f in self.as_sorted_paths(self.children))
+        children = "\n".join(indent + str(f)
+                             for f in self.as_sorted_paths(self.children))
         rep = (
             """Process: pid=%(pid)r, ppid=%(ppid)r, execs=%(execs)r, tstamp=%(tstamp)s:
  Reads:
@@ -1343,7 +1359,8 @@ class Process(object):
             ]
 
         # filter out RW to the same file
-        self.readwrites = [rw for rw in self.readwrites if rw.source != rw.target]
+        self.readwrites = [
+            rw for rw in self.readwrites if rw.source != rw.target]
 
         # filter out processes that use ignored exec commands
         # We simply wipe out any reads and writes: the process will
@@ -1414,7 +1431,8 @@ class Process(object):
         self.remove_read_if_write()
         if settings:
             self.demux(settings.multiplexers)
-            self.filter(settings.ignored_reads, settings.ignored_writes, settings.ignored_execs)
+            self.filter(settings.ignored_reads,
+                        settings.ignored_writes, settings.ignored_execs)
         return self
 
     def dump(self, output_dir):
@@ -1499,7 +1517,8 @@ class Process(object):
             last_ts = "0"
 
         yield Operation(
-            pid, command, list(self.reads.keys()), list(self.writes.keys()), first_ts, last_ts
+            pid, command, list(self.reads.keys()), list(
+                self.writes.keys()), first_ts, last_ts
         )
 
 
@@ -1624,7 +1643,8 @@ def cleaner(to_clean, input_dir, output_dir=None, settings=None):
     """
 
     save_dir = output_dir or input_dir
-    logger.info("Filtering and saving cleaned traces to %(save_dir)r." % locals())
+    logger.info(
+        "Filtering and saving cleaned traces to %(save_dir)r." % locals())
     start = time.time()
 
     combo_msg = (
@@ -1798,7 +1818,8 @@ def as_graph(processes, settings):
             cid = "%(command)s %(pid)d, %(start_tstamp)s:%(end_tstamp)s" % op._asdict()
             # pad id with a unique index to ensure each op is unique
             cid = cid + ("-%d" % i)
-            co = CommandNode("c", op.pid, i, op.command, op.start_tstamp, op.end_tstamp)
+            co = CommandNode("c", op.pid, i, op.command,
+                             op.start_tstamp, op.end_tstamp)
             graph.add_node(cid, co)
             # add file nodes and edges between commands and files
             for pth in op.sources:
@@ -2105,7 +2126,8 @@ def graph_as_tuples(processes, settings):
                     yield fn
                     files.add(pth)
                 # add read edge
-                re = ("r", pth, opid, op.command, op.start_tstamp, op.end_tstamp)
+                re = ("r", pth, opid, op.command,
+                      op.start_tstamp, op.end_tstamp)
                 yield re
             for pth in op.targets:
                 if pth not in files:
@@ -2378,7 +2400,6 @@ def debug_print(dir_path, pid):
 ##############################################################################
 # Command line processing
 
-from tracecode._vendor.docopt import docopt
 
 NOTICE = (
     """TraceCode version %s
@@ -2560,13 +2581,15 @@ def main(args):
         if not settings.targets or not settings.sources:
             print("Aborting: No sources or targets defined for analysis.")
             sys.exit(1)
-        analyze_deployment_graph_from_dir_to_file(input_dir, analysis_file, settings)
+        analyze_deployment_graph_from_dir_to_file(
+            input_dir, analysis_file, settings)
 
     elif args.get("graphic"):
         input_dir = get_dir(args, "PARSED_DIR")
         file_name = args["GRAPH_FILE"]
         file_type = args["--format"]
-        as_graphic_from_dir(input_dir, file_name, settings, file_type=file_type)
+        as_graphic_from_dir(input_dir, file_name,
+                            settings, file_type=file_type)
 
     elif args.get("debug"):
         input_dir = get_dir(args, "PARSED_DIR")
@@ -2586,7 +2609,8 @@ def main(args):
 
     elif args.get("validate"):
         input_dir = get_dir(args, "TRACE_DIR")
-        logger.log(logging.INFO, "Processing traces from input_dir: " "%(input_dir)r." % locals())
+        logger.log(
+            logging.INFO, "Processing traces from input_dir: " "%(input_dir)r." % locals())
         _root_pid, _traces = validate_traces(input_dir)
 
     elif args.get("inventory"):
@@ -2602,7 +2626,8 @@ def cli(*args, **kwargs):
     """
     Command line entry point.
     """
-    arguments = docopt(NOTICE + COMMAND_HELP + conf.FORMATTED_OPTIONS, version=__version__)
+    arguments = docopt(NOTICE + COMMAND_HELP +
+                       conf.FORMATTED_OPTIONS, version=__version__)
     main(arguments)
 
 

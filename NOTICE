@@ -10,7 +10,7 @@ TraceCode software is licensed under the Apache License version 2.0.
 
 See https://www.apache.org/licenses/LICENSE-2.0 for the Apache-2.0 license text.
 
-See https://github.com/nexB/tracecode-toolkit-strace for support or download. 
+See https://github.com/aboutcode-org/tracecode-toolkit-strace for support or download.
 See https://aboutcode.org for more information about nexB OSS projects
 
 
@@ -26,12 +26,12 @@ The corresponding source code for pre-compiled third-party software is available
 for immediate download from the same release page where you obtained TraceCode,
 including:
 
-- https://github.com/nexB/tracecode-toolkit-strace
+- https://github.com/aboutcode-org/tracecode-toolkit-strace
 - https://thirdparty.aboutcode.org/pypi/
-- https://github.com/nexB/thirdparty-packages/pypi/
-- https://github.com/nexB/scancode-plugins/
-- https://github.com/nexB/scancode-thirdparty-src/
-- https://github.com/nexB/thirdparty-packages/
+- https://github.com/aboutcode-org/thirdparty-packages/pypi/
+- https://github.com/aboutcode-org/scancode-plugins/
+- https://github.com/aboutcode-org/scancode-thirdparty-src/
+- https://github.com/aboutcode-org/thirdparty-packages/
 
 You may also contact us to request the source code by email at info@nexb.com or
 by postal mail at:

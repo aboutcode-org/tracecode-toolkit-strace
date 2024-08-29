@@ -5,7 +5,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/tracecode-toolkit-strace for support or download.
+# See https://github.com/aboutcode-org/tracecode-toolkit-strace for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -159,7 +159,8 @@ class BaseTestCase(unittest.TestCase):
             fn = join(tmp, str(proc.pid))
             with open(fn) as fout:
                 fout.write(proc.pformat())
-        expected_pf = self.get_tst_path(join(test_name, "expected_pformats.tar.bz2"))
+        expected_pf = self.get_tst_path(
+            join(test_name, "expected_pformats.tar.bz2"))
         self.build_archive(tmp, tar_dir, expected_pf)
 
     def check_pformats(
@@ -253,7 +254,8 @@ class BasicTest(BaseTestCase):
                 tstamp="1389171522.376468",
                 result="832",
                 func="read",
-                args=["4</lib/x86_64-linux-gnu/libc-2.15.so>", "\\177ELF\\2\\1\\1...", "832"],
+                args=["4</lib/x86_64-linux-gnu/libc-2.15.so>",
+                      "\\177ELF\\2\\1\\1...", "832"],
             ),
             tracecode.Entry(
                 tstamp="1389171522.376782",
@@ -280,7 +282,8 @@ class BasicTest(BaseTestCase):
                 tstamp="1389171522.392265",
                 result="4",
                 func="openat",
-                args=["AT_FDCWD", "linux/x86_64", "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
+                args=["AT_FDCWD", "linux/x86_64",
+                      "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
             ),
             tracecode.Entry(
                 tstamp="1389171522.392467",
@@ -288,7 +291,8 @@ class BasicTest(BaseTestCase):
                 func="write",
                 args=["1</dev/pts/6>", "/bin/mkdir -p ./linux\\n", "22"],
             ),
-            tracecode.Entry(tstamp="1389171522.392584", result="2453403", func="vfork", args=[]),
+            tracecode.Entry(tstamp="1389171522.392584",
+                            result="2453403", func="vfork", args=[]),
             tracecode.Entry(
                 tstamp="1389171528.651642",
                 result="0",
@@ -374,7 +378,8 @@ class BasicTest(BaseTestCase):
             tstamp="1390356525.416370",
             result="61",
             func="read",
-            args=["/tmp/sh-thd-1391680596", "#include <libintl.h>\nint main( deleted)\n...", "61"],
+            args=["/tmp/sh-thd-1391680596",
+                  "#include <libintl.h>\nint main( deleted)\n...", "61"],
         )
         assert expected2 == result
 
@@ -396,7 +401,8 @@ class BasicTest(BaseTestCase):
                 tstamp="1389171522.376468",
                 result="832",
                 func="read",
-                args=["4</lib/x86_64-linux  -gnu/libc-2.15.so>", "\\177ELF\\2\\1\\1...", "832"],
+                args=["4</lib/x86_64-linux  -gnu/libc-2.15.so>",
+                      "\\177ELF\\2\\1\\1...", "832"],
             ),
             tracecode.Entry(
                 tstamp="1389171522.376782",
@@ -414,7 +420,8 @@ class BasicTest(BaseTestCase):
                 tstamp="1389171522.377657",
                 result="4",
                 func="openat",
-                args=["AT_FDCWD", "some path", "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
+                args=["AT_FDCWD", "some path",
+                      "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
             ),
             tracecode.Entry(
                 tstamp="1389171522.377780", result="4", func="open", args=["Makefile", "O_RDONLY"]
@@ -423,7 +430,8 @@ class BasicTest(BaseTestCase):
                 tstamp="1389171522.392265",
                 result="4",
                 func="openat",
-                args=["AT_FDCWD", "lin  ux/x86_64", "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
+                args=["AT_FDCWD", "lin  ux/x86_64",
+                      "O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC"],
             ),
             tracecode.Entry(
                 tstamp="1389171522.392467",
@@ -431,7 +439,8 @@ class BasicTest(BaseTestCase):
                 func="write",
                 args=["1</dev/p  ts/6>", "/bin/mkdir -p ./linux\\n", "22"],
             ),
-            tracecode.Entry(tstamp="1389171522.392584", result="2453403", func="vfork", args=[]),
+            tracecode.Entry(tstamp="1389171522.392584",
+                            result="2453403", func="vfork", args=[]),
             tracecode.Entry(
                 tstamp="1389171528.651642",
                 result="0",
@@ -497,7 +506,8 @@ class BasicTest(BaseTestCase):
         input_dir = self.get_tst_path("strace_mini2/trace")
         output_dir = None
         cwd = "/"
-        done = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=False, clean=False)
+        done = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=False, clean=False)
         root = done[0]
         assert 2453402 == root.pid
         child = done[1]
@@ -542,7 +552,8 @@ class BasicTest(BaseTestCase):
                     "993",
                 ],
             ),
-            (r'''".deps/system.Tpo", ".deps/system.Po"''', [".deps/system.Tpo", ".deps/system.Po"]),
+            (r'''".deps/system.Tpo", ".deps/system.Po"''',
+             [".deps/system.Tpo", ".deps/system.Po"]),
         ]
         for args, expected in tests:
             dec = tracecode.decode_args(args)
@@ -625,7 +636,8 @@ class BasicTest(BaseTestCase):
         tests = [
             (
                 r"""3</cups/adminutil.o>, "les...\\n\\0<Location /admin/conf>\\n "..., 4096""",
-                ["3</cups/adminutil.o>", "les...\\n\\0<Location /admin/conf>\\n ...", "4096"],
+                ["3</cups/adminutil.o>",
+                    "les...\\n\\0<Location /admin/conf>\\n ...", "4096"],
             ),
             (
                 r"""4</cgi-bin/websearch>, "\\327\\362\\256\\200;<H\\367\\321L\\215d\\n\\376u\\31A\\200<$>t\\nH\\307E\\0\\0\\0\\0\\0\\353"..., 4096""",
@@ -643,11 +655,13 @@ class BasicTest(BaseTestCase):
     def test_decode_args_can_decode_path_args_with_simple_descriptors(self):
         # list of tuple (input args strings, expected decoded args list,)
         tests = [
-            ("3</bash-4.1/pathnames.tmp>, 1", ["3</bash-4.1/pathnames.tmp>", "1"]),
+            ("3</bash-4.1/pathnames.tmp>, 1",
+             ["3</bash-4.1/pathnames.tmp>", "1"]),
             ("3</bash-4.1/.made>, 1", ["3</bash-4.1/.made>", "1"]),
             ("3</bash-4.1/.build>, 1", ["3</bash-4.1/.build>", "1"]),
             ("3</dev/null>, 2", ["3</dev/null>", "2"]),
-            ("3</bash-4.1/builtins/pipesize.h>, 1", ["3</bash-4.1/builtins/pipesize.h>", "1"]),
+            ("3</bash-4.1/builtins/pipesize.h>, 1",
+             ["3</bash-4.1/builtins/pipesize.h>", "1"]),
             ("3</tmp/pipsize.AdzIOk>, 2", ["3</tmp/pipsize.AdzIOk>", "2"]),
         ]
         for args, expected in tests:
@@ -656,7 +670,8 @@ class BasicTest(BaseTestCase):
 
     def test_decode_descriptor(self):
         tests = [
-            ("4</lib/x86_64-linux-gnu/libtinfo.so.5.9>", "/lib/x86_64-linux-gnu/libtinfo.so.5.9"),
+            ("4</lib/x86_64-linux-gnu/libtinfo.so.5.9>",
+             "/lib/x86_64-linux-gnu/libtinfo.so.5.9"),
             ("4</tmp/ccGJ3nlX.s>", "/tmp/ccGJ3nlX.s"),
             ("4<../tmp/ccG\\>J3nlX.s>", "../tmp/ccG\\>J3nlX.s"),
             ("AT_FDCWD", "AT_FDCWD"),
@@ -768,7 +783,8 @@ class BasicTest(BaseTestCase):
         assert "/TEST/st40/include/rbl/hal.h" == er.args[1]
 
     def test_parse_line_new_process_vfork(self):
-        MockProcess = collections.namedtuple("Process", "ppid pid cwd children")
+        MockProcess = collections.namedtuple(
+            "Process", "ppid pid cwd children")
         cwd = "/"
         proc = MockProcess(None, 1, cwd, {})
         line = """1389171522.570319 vfork() = 2453412"""
@@ -781,11 +797,13 @@ class BasicTest(BaseTestCase):
         assert 1 == len(proc.children)
 
     def test_parse_line_new_process_clone(self):
-        MockProcess = collections.namedtuple("Process", "ppid pid cwd children execs")
+        MockProcess = collections.namedtuple(
+            "Process", "ppid pid cwd children execs")
         cwd = "/"
         ex = tracecode.Exec(command="bin/ls", args=[], tstamp="0.1")
         proc = MockProcess(
-            None, 1, cwd, {}, [tracecode.Exec(command="bin/bash", args=[], tstamp="0.1"), ex]
+            None, 1, cwd, {}, [tracecode.Exec(
+                command="bin/bash", args=[], tstamp="0.1"), ex]
         )
         line = """1389171522.570319 clone() = 2453412"""
         stgs = conf.DefaultSettings()
@@ -875,7 +893,8 @@ class BasicTest(BaseTestCase):
         tracecode.parse_line(line, proc, settings=stgs)
         assert 1 == len(proc.execs)
         assert "/bin/bash" == proc.execs[0].command
-        expected = ["/bin/bash", "-c", "gcc -Wall -Wwrite-strings -g -O2   -o strace bjm.o ...."]
+        expected = ["/bin/bash", "-c",
+                    "gcc -Wall -Wwrite-strings -g -O2   -o strace bjm.o ...."]
         assert expected == proc.execs[0].args
 
     def test_parse_line_exec_multiple(self):
@@ -886,13 +905,15 @@ class BasicTest(BaseTestCase):
         tracecode.parse_line(line, proc, settings=stgs)
         assert 1 == len(proc.execs)
         assert "/bin/sh" == proc.execs[0].command
-        assert ["/bin/sh", "-c", "(cat /dev/null; ) > sound/pci/nm..."] == proc.execs[0].args
+        assert ["/bin/sh", "-c",
+                "(cat /dev/null; ) > sound/pci/nm..."] == proc.execs[0].args
 
         line = """1389270180.377798 execve("../../../../../../kernel/scripts/gcc-wrapper.py", ["../../../../../../kernel/scripts"..., "arm-eabi-gcc", "/home/nexb/build/jb4.3-14.10.0Q3"..., "-I../../../../../../kernel/arch/"..., "-Inet/core", "-D__KERNEL__", "-mlittle-endian", ...], [/* 147 vars */]) = 0"""
         tracecode.parse_line(line, proc, settings=stgs)
         assert 2 == len(proc.execs)
         assert "/bin/sh" == proc.execs[0].command
-        assert ["/bin/sh", "-c", "(cat /dev/null; ) > sound/pci/nm..."] == proc.execs[0].args
+        assert ["/bin/sh", "-c",
+                "(cat /dev/null; ) > sound/pci/nm..."] == proc.execs[0].args
         assert "/a/b/c/kernel/scripts/gcc-wrapper.py" == proc.execs[1].command
         expected = [
             "../../../../../../kernel/scripts...",
@@ -958,8 +979,10 @@ class BasicTest(BaseTestCase):
     def test_is_ignored_path(self):
         assert not tracecode.is_ignored_path("/dev/pts/5", None)
         assert tracecode.is_ignored_path("/dev/pts/5", conf.SYS_CONFIG)
-        assert tracecode.is_ignored_path("/usr/lib/libssl.so.1", conf.DEFAULT_IGNORED_READS)
-        assert not tracecode.is_ignored_path("/usr/lib/libssl.a", conf.DEFAULT_IGNORED_READS)
+        assert tracecode.is_ignored_path(
+            "/usr/lib/libssl.so.1", conf.DEFAULT_IGNORED_READS)
+        assert not tracecode.is_ignored_path(
+            "/usr/lib/libssl.a", conf.DEFAULT_IGNORED_READS)
 
     def test_process_simple_command1(self):
         cwd = "/home/nexb"
@@ -1023,31 +1046,38 @@ class BasicTest(BaseTestCase):
         assert {2799713: "1389356960.220049"} == proc.children
 
     def test_parse_entry_pipes_should_not_be_ignored1(self):
-        e = tracecode.parse_entry('1389366380.196699 read(3<pipe:[15206912]>, "all\n", 128) = 4')
+        e = tracecode.parse_entry(
+            '1389366380.196699 read(3<pipe:[15206912]>, "all\n", 128) = 4')
         assert "3<pipe:[15206912]>" == e.args[0]
 
     def test_parse_entry_pipes_should_not_be_ignored2(self):
-        e = tracecode.parse_entry('1389366380.204714 read(0<pipe:[15213549]>, "", 4096) = 0')
+        e = tracecode.parse_entry(
+            '1389366380.204714 read(0<pipe:[15213549]>, "", 4096) = 0')
         assert "0<pipe:[15213549]>" == e.args[0]
 
     def test_parse_entry_pipes_should_not_be_ignored3(self):
-        e = tracecode.parse_entry('1389366380.204850 write(1<pipe:[15206912]>, "all\n", 4) = 4')
+        e = tracecode.parse_entry(
+            '1389366380.204850 write(1<pipe:[15206912]>, "all\n", 4) = 4')
         assert "1<pipe:[15206912]>" == e.args[0]
 
     def test_parse_entry_sockets_should_not_be_ignored1(self):
-        e = tracecode.parse_entry('1389366380.196699 read(3<socket:[15206912]>, "all\n", 128) = 4')
+        e = tracecode.parse_entry(
+            '1389366380.196699 read(3<socket:[15206912]>, "all\n", 128) = 4')
         assert "3<socket:[15206912]>" == e.args[0]
 
     def test_parse_entry_sockets_should_not_be_ignored2(self):
-        e = tracecode.parse_entry('1389366380.204714 read(0<socket:[15213549]>, "", 4096) = 0')
+        e = tracecode.parse_entry(
+            '1389366380.204714 read(0<socket:[15213549]>, "", 4096) = 0')
         assert "0<socket:[15213549]>" == e.args[0]
 
     def test_parse_entry_sockets_should_not_be_ignored3(self):
-        e = tracecode.parse_entry('1389366380.204850 write(1<socket:[15206912]>, "all\n", 4) = 4')
+        e = tracecode.parse_entry(
+            '1389366380.204850 write(1<socket:[15206912]>, "all\n", 4) = 4')
         assert "1<socket:[15206912]>" == e.args[0]
 
     def test_Process_object_can_be_pickled(self):
-        proc = tracecode.Process(pid=1, ppid=0, cwd="/", init_exec="bash", tstamp="0.1")
+        proc = tracecode.Process(
+            pid=1, ppid=0, cwd="/", init_exec="bash", tstamp="0.1")
         proc.children = {12: 13}
         proc.execs = [22, 23]
         proc.reads = ["a", "b"]
@@ -1082,7 +1112,8 @@ class BasicTest(BaseTestCase):
         ]
         self.run_tracecode_command(args)
         procs = tracecode.load_from_dir(output_dir)
-        ar = self.get_tst_path(join("patchelf_command2", "expected_pformats.tar.bz2"))
+        ar = self.get_tst_path(
+            join("patchelf_command2", "expected_pformats.tar.bz2"))
         expected_pf = join(self.extract_archive(ar), "expected_pformats")
         regen = False
         for proc in procs:
@@ -1115,7 +1146,8 @@ class BasicTest(BaseTestCase):
         ]
         self.run_tracecode_command(args)
         procs = tracecode.load_from_dir(output_dir)
-        ar = self.get_tst_path(join("patchelf_command2", "expected_pformats.tar.bz2"))
+        ar = self.get_tst_path(
+            join("patchelf_command2", "expected_pformats.tar.bz2"))
         extracted = self.extract_archive(ar)
         expected_pf = join(extracted, "expected_pformats")
 
@@ -1154,7 +1186,8 @@ class BasicTest(BaseTestCase):
             ppid=0,
             cwd="/",
         )
-        tracecode.parse_trace_file(proc, trace_file, None, done, output_dir=None)
+        tracecode.parse_trace_file(
+            proc, trace_file, None, done, output_dir=None)
         stgs = conf.BaseSettings()
         muxers = stgs.multiplexers
         assert proc.is_multiplexed(muxers)
@@ -1199,7 +1232,8 @@ class BasicTest(BaseTestCase):
         assert af == after
 
     def test_demux_single_readwrite(self):
-        proc = tracecode.Process(pid=1, ppid=0, cwd="/", init_exec=tracecode.Exec("/bin/cp", "", 0))
+        proc = tracecode.Process(
+            pid=1, ppid=0, cwd="/", init_exec=tracecode.Exec("/bin/cp", "", 0))
         muxers = ["*/cp"]
         assert proc.is_multiplexed(muxers)
         proc.add_read("/read/path", "0", [])
@@ -1217,7 +1251,8 @@ class BasicTest(BaseTestCase):
         # fake no demuxing first
         muxers = settings.multiplexers[:]
         settings.multiplexers = []
-        tracecode.parse_trace_file(proc, trace_file, None, done, output_dir=None, settings=settings)
+        tracecode.parse_trace_file(
+            proc, trace_file, None, done, output_dir=None, settings=settings)
 
         settings.multiplexers = muxers
         assert proc.is_multiplexed(muxers)
@@ -1255,7 +1290,8 @@ class BasicTest(BaseTestCase):
         # fake no demuxing first
         muxers = settings.multiplexers[:]
         settings.multiplexers = []
-        tracecode.parse_trace_file(proc, trace_file, None, done, output_dir=None, settings=settings)
+        tracecode.parse_trace_file(
+            proc, trace_file, None, done, output_dir=None, settings=settings)
 
         # print(proc.pformat())
         assert proc.is_multiplexed(muxers)
@@ -1303,8 +1339,10 @@ class BasicTest(BaseTestCase):
         proc.add_write("pipe:[456343]", "0", [])
         proc.add_write("socket:[456343]", "0", [])
         proc.add_write("pipe:[45633]", "0", [])
-        proc.add_readwrite("pipe:[4561233]", "socket:[4561233]", "0", "0", [], [])
-        proc.add_readwrite("socket:[4561233]", "socket:[4561233]", "0", "0", [], [])
+        proc.add_readwrite(
+            "pipe:[4561233]", "socket:[4561233]", "0", "0", [], [])
+        proc.add_readwrite("socket:[4561233]",
+                           "socket:[4561233]", "0", "0", [], [])
         assert {} != proc.reads
         assert {} != proc.writes
         assert [] != proc.readwrites
@@ -1331,7 +1369,8 @@ class BasicTest(BaseTestCase):
         proc.add_write("/write/path", "0", [])
         proc.add_readwrite("/read/read", "/write/read", "0", "0", [], [])
         proc.add_readwrite("/my/path", "/your/path", "0", "0", [], [])
-        proc.filter(ignored_reads=[], ignored_writes=[], ignored_execs=["/bin/bash"])
+        proc.filter(ignored_reads=[], ignored_writes=[],
+                    ignored_execs=["/bin/bash"])
         assert proc.reads == {}
         assert proc.writes == {}
         assert proc.readwrites == []
@@ -1465,7 +1504,8 @@ arch_prctl
             # NOTE the trace has been doctored such that PID 2800302
             # is a trace file without any reference in the stack of PIDs
             input_dir = self.extract_trace("parse_does_not_hang")
-            tracecode.parse_raw_traces(None, input_dir, timeout_func=timeoutfunc)
+            tracecode.parse_raw_traces(
+                None, input_dir, timeout_func=timeoutfunc)
         except Queue_Empty:
             # success
             pass
@@ -1483,7 +1523,8 @@ arch_prctl
             # NOTE the trace has been doctored such that PID 2800302
             # is a trace file without any reference in the stack of PIDs
             input_dir = self.extract_trace("parse_does_not_hang")
-            tracecode.parse_raw_traces(None, input_dir, output_dir, timeout_func=timeoutfunc)
+            tracecode.parse_raw_traces(
+                None, input_dir, output_dir, timeout_func=timeoutfunc)
         except Queue_Empty:
             # success
             pass
@@ -1502,7 +1543,8 @@ arch_prctl
         args = {"parse": True, "TRACE_DIR": raw_dir, "PARSED_DIR": parsed_dir}
         tracecode.main(args)
         proc = tracecode.Process.load(parsed_dir, 70676)
-        assert 3 == len([p for p in proc.reads if p.startswith("/lib/i386-linux-gnu/")])
+        assert 3 == len(
+            [p for p in proc.reads if p.startswith("/lib/i386-linux-gnu/")])
 
         parsed_dir2 = self.get_temp_dir()
         args = {
@@ -1513,13 +1555,15 @@ arch_prctl
         }
         tracecode.main(args)
         proc2 = tracecode.Process.load(parsed_dir2, 70676)
-        assert 0 == len([p for p in proc2.reads if p.startswith("/lib/i386-linux-gnu/")])
+        assert 0 == len(
+            [p for p in proc2.reads if p.startswith("/lib/i386-linux-gnu/")])
 
         parsed_dir = self.get_temp_dir()
         args = {"parse": True, "TRACE_DIR": raw_dir, "PARSED_DIR": parsed_dir}
         tracecode.main(args)
         proc3 = tracecode.Process.load(parsed_dir, 70676)
-        assert 3 == len([p for p in proc3.reads if p.startswith("/lib/i386-linux-gnu/")])
+        assert 3 == len(
+            [p for p in proc3.reads if p.startswith("/lib/i386-linux-gnu/")])
 
 
 class PathMatchingTest(BaseTestCase):
@@ -1612,7 +1656,8 @@ class FilesetTest(BaseTestCase):
 
     def test_in_fileset_exclusions(self):
         fileset = ("/nexb/src/*", "-/nexb/src/*.so")
-        assert not tracecode.in_fileset("/nexb/src/dist/build/mylib.so", fileset)
+        assert not tracecode.in_fileset(
+            "/nexb/src/dist/build/mylib.so", fileset)
 
     def test_in_fileset_weird_exclusions(self):
         fileset = ("/nexb/src/*", "-")
@@ -1642,32 +1687,38 @@ class EndToEndTest(BaseTestCase):
     def test_process_simple_command_pformat(self):
         test_name = "pformat_grep2"
         cwd = "/home/nexb"
-        self.check_pformats(test_name, cwd, with_output_dir=False, parallel=False, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=False, parallel=False, regen=False)
 
     def test_process_simple_command_pformat3(self):
         test_name = "pformat_grep3"
         cwd = "/home/nexb"
-        self.check_pformats(test_name, cwd, with_output_dir=False, parallel=False, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=False, parallel=False, regen=False)
 
     def test_trace_complete_build_cups_with_multiprocessing(self):
         test_name = "pformat_cups"
         cwd = "/home/nexb/tools/cups/cups-1.4.6"
-        self.check_pformats(test_name, cwd, with_output_dir=False, parallel=True, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=False, parallel=True, regen=False)
 
     def test_trace_complete_build_patchelf(self):
         cwd = "/home/nexb/tools/patchelf/patchelf-0.5"
         test_name = "pformat_patchelf"
-        self.check_pformats(test_name, cwd, with_output_dir=False, parallel=False, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=False, parallel=False, regen=False)
 
     def test_trace_complete_build_strace_full(self):
         cwd = "/home/nexb/tools/strace/strace-4.8"
         test_name = "pformat_strace_full"
-        self.check_pformats(test_name, cwd, with_output_dir=False, parallel=True, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=False, parallel=True, regen=False)
 
     def test_trace_complete_build_strace_saved_to_dir(self):
         cwd = "/home/nexb/tools/strace/strace-4.8"
         test_name = "pformat_strace_saved"
-        self.check_pformats(test_name, cwd, with_output_dir=True, parallel=True, regen=False)
+        self.check_pformats(
+            test_name, cwd, with_output_dir=True, parallel=True, regen=False)
 
     def test_trace_cleaning_strace_full(self):
         cwd = "/home/nexb/tools/strace/strace-4.8"
@@ -1688,7 +1739,7 @@ class EndToEndTest(BaseTestCase):
         # test a live strace run and each read/write commands
         test_dir = self.get_temp_dir(delete=True)
         test_file = Path(test_dir) / "hello_world.c"
-        with open(test_file, "w")  as o:
+        with open(test_file, "w") as o:
             o.write("""
 #include <stdio.h>
 
@@ -1709,9 +1760,9 @@ int main(void)
 
         try:
             subprocess.check_output(args,
-                cwd=test_dir,
-                shell=False,
-            )
+                                    cwd=test_dir,
+                                    shell=False,
+                                    )
         except subprocess.CalledProcessError as e:
             raise Exception(' '.join(args), e.output) from e
 
@@ -1725,25 +1776,29 @@ int main(void)
         # tracecode [options] parse     TRACE_DIR   PARSED_DIR
         # tracecode parse /tmp/outputs /tmp/parsed_outputs
         parsed_dir = self.get_temp_dir()
-        self.run_tracecode_command([f"--cwd={cwd}", "parse", trace_dir, parsed_dir])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "parse", trace_dir, parsed_dir])
         assert os.listdir(parsed_dir)
 
         # tracecode [options] filter    PARSED_DIR  [NEW_PARSED_DIR]
         parsed_dir2 = self.get_temp_dir()
-        self.run_tracecode_command([f"--cwd={cwd}", "--defaults", "filter", parsed_dir, parsed_dir2])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "--defaults", "filter", parsed_dir, parsed_dir2])
         assert os.listdir(parsed_dir2)
 
         # tracecode list /tmp/parsed_outputs /tmp/a/reads /tmp/b/writes
         reads_file = os.path.join(output_dir, "reads.txt")
         writes_file = os.path.join(output_dir, "writes.txt")
-        self.run_tracecode_command([f"--cwd={cwd}", "list", parsed_dir, reads_file, writes_file])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "list", parsed_dir, reads_file, writes_file])
         assert os.path.exists(reads_file)
         assert os.path.exists(writes_file)
 
         # tracecode [options] guess     PARSED_DIR  SOURCES_FILE  TARGETS_FILE
         sources_file = os.path.join(output_dir, "sources.txt")
         targets_file = os.path.join(output_dir, "targets.txt")
-        self.run_tracecode_command([f"--cwd={cwd}", "guess", parsed_dir, sources_file, targets_file])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "guess", parsed_dir, sources_file, targets_file])
         assert os.path.exists(sources_file)
         assert os.path.exists(targets_file)
 
@@ -1759,12 +1814,14 @@ int main(void)
 
         # tracecode [options] inventory PARSED_DIR  INV_FILE
         inventory_file = os.path.join(output_dir, "inventory.csv")
-        self.run_tracecode_command([f"--cwd={cwd}", "inventory", parsed_dir, inventory_file])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "inventory", parsed_dir, inventory_file])
         assert os.path.exists(inventory_file)
 
         # tracecode [options] graphic   PARSED_DIR  GRAPH_FILE
         graph_file = os.path.join(output_dir, "graph.txt")
-        self.run_tracecode_command([f"--cwd={cwd}", "graphic", parsed_dir, graph_file])
+        self.run_tracecode_command(
+            [f"--cwd={cwd}", "graphic", parsed_dir, graph_file])
         assert os.path.exists(f"{graph_file}.pdf")
 
 
@@ -1822,7 +1879,8 @@ class GraphicTest(BaseTestCase):
         if regen or _GLOBAL_REGEN:
             shutil.copy(fn, expected)
         logger.debug("%(test_name)r graph dot saved to %(fn)s" % locals())
-        assert open(expected).read().splitlines() == open(out).read().splitlines()
+        assert open(expected).read().splitlines() == open(
+            out).read().splitlines()
 
     @unittest.skipUnless(tracecode.has_dot(), "Install Graphviz to run tests")
     def test_render_graph_bare(self):
@@ -1840,8 +1898,10 @@ class GraphicTest(BaseTestCase):
         input_dir = self.extract_trace("render_graph_patchelf")
         output_dir = None
         stgs = conf.DefaultSettings()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
-        self.check_render_graph_dot("render_graph_patchelf", procs, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        self.check_render_graph_dot(
+            "render_graph_patchelf", procs, settings=stgs)
 
     @unittest.skipUnless(tracecode.has_dot(), "Install Graphviz to run tests")
     def test_render_graph_strace(self):
@@ -1849,8 +1909,10 @@ class GraphicTest(BaseTestCase):
         input_dir = self.extract_trace("render_graph_strace")
         output_dir = None
         stgs = conf.DefaultSettings()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
-        self.check_render_graph_dot("render_graph_strace", procs, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        self.check_render_graph_dot(
+            "render_graph_strace", procs, settings=stgs)
 
     @unittest.skipUnless(tracecode.has_dot(), "Install Graphviz to run tests")
     def test_render_graph_cups(self):
@@ -1858,21 +1920,25 @@ class GraphicTest(BaseTestCase):
         input_dir = self.extract_trace("render_graph_cups")
         output_dir = None
         stgs = conf.DefaultSettings()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
         self.check_render_graph_dot("render_graph_cups", procs, settings=stgs)
 
     @unittest.skipUnless(tracecode.has_dot(), "Install Graphviz to run tests")
     def check_render_graph_with_procs(self, test_name, cwd, settings, regen=False):
         input_dir = self.extract_trace(test_name)
         output_dir = self.get_temp_dir()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, None, parallel=True, settings=settings)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, None, parallel=True, settings=settings)
         out = join(self.get_temp_dir(), test_name + "expected.dot")
-        tracecode.as_graphic_from_procs(procs, file_name=out, settings=settings, file_type="dot")
+        tracecode.as_graphic_from_procs(
+            procs, file_name=out, settings=settings, file_type="dot")
         expected = join(self.get_tst_path(test_name), "expected.dot")
         if regen or _GLOBAL_REGEN:
             shutil.copy(out, expected)
         logger.debug("%(test_name)r graph dot saved to %(out)s" % locals())
-        assert open(out).read().splitlines() == open(expected).read().splitlines()
+        assert open(out).read().splitlines() == open(
+            expected).read().splitlines()
 
     @unittest.skipUnless(tracecode.has_dot(), "Install Graphviz to run tests")
     def test_procs_to_graphics_from_dir_patchelf(self):
@@ -1897,7 +1963,8 @@ class GraphicTest(BaseTestCase):
         stgs.ignored_reads += conf.GCC_DEPEND_FILES
 
         stgs.targets = [target]
-        self.check_render_graph_with_procs(test_name, cwd, settings=stgs, regen=False)
+        self.check_render_graph_with_procs(
+            test_name, cwd, settings=stgs, regen=False)
 
 
 class ListTest(BaseTestCase):
@@ -1948,7 +2015,8 @@ class ListTest(BaseTestCase):
         )
         reads, writes = tracecode.file_lists(procs)
 
-        expected_reads = open(self.get_tst_path("lists_patchelf/expected")).read().splitlines()
+        expected_reads = open(self.get_tst_path(
+            "lists_patchelf/expected")).read().splitlines()
         assert sorted(expected_reads) == sorted(list(reads))
 
         expected_writes = """/dev/pts/11
@@ -1971,7 +2039,8 @@ class ListTest(BaseTestCase):
         input_dir = self.extract_trace(test_name)
         output_dir = None
         stgs = conf.DefaultSettings()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
         sources, targets = tracecode.guess_sources_and_targets(procs)
         expected_srcs = """/home/nexb/tools/patchelf/patchelf-0.5/Makefile
         /usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h
@@ -2005,11 +2074,13 @@ class ListTest(BaseTestCase):
         input_dir = self.extract_trace(test_name)
         output_dir = None
 
-        extra_read_ignored = ("/usr/lib/gcc/*",) + conf.GCC_DEPEND_FILES + conf.GCC_INCLUDES
+        extra_read_ignored = ("/usr/lib/gcc/*",) + \
+            conf.GCC_DEPEND_FILES + conf.GCC_INCLUDES
         stgs = conf.DefaultSettings()
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
 
         sources, targets = tracecode.guess_sources_and_targets(procs)
         expected_srcs = """/home/nexb/tools/patchelf/patchelf-0.5/Makefile
@@ -2038,14 +2109,16 @@ class ListTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            +conf.GCC_DEPEND_FILES
-            +conf.GCC_INCLUDES
+            + conf.GCC_DEPEND_FILES
+            + conf.GCC_INCLUDES
         )
         stgs = conf.DefaultSettings()
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
-        tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
-        sources, targets = tracecode.guess_sources_and_targets_from_dir(dir_path=output_dir)
+        tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        sources, targets = tracecode.guess_sources_and_targets_from_dir(
+            dir_path=output_dir)
         expected_srcs = """/home/nexb/tools/patchelf/patchelf-0.5/src/elf.h
         /home/nexb/tools/patchelf/patchelf-0.5/src/patchelf.cc""".split()
         assert sorted(sources) == sorted(expected_srcs)
@@ -2195,8 +2268,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            +conf.GCC_DEPEND_FILES
-            +conf.GCC_INCLUDES
+            + conf.GCC_DEPEND_FILES
+            + conf.GCC_INCLUDES
         )
         stgs = conf.DefaultSettings()
 
@@ -2210,7 +2283,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
         stgs.sources = sources
         stgs.targets = targets
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
 
         d2d = tracecode.analyze_file_graph(procs, settings=stgs)
         d2d = sorted(d2d)
@@ -2232,7 +2306,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
     def analyze_d2d(self, test_name, cwd, settings, expected=None, regen=False):
 
         input_dir = self.extract_trace(test_name)
-        procs = tracecode.parse_raw_traces(cwd, input_dir, None, parallel=True, settings=settings)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, None, parallel=True, settings=settings)
 
         d2d = tracecode.analyze_full_graph(procs, settings, _invert=None)
         d2d = sorted(set(d2d))
@@ -2275,8 +2350,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            +conf.GCC_DEPEND_FILES
-            +conf.GCC_INCLUDES
+            + conf.GCC_DEPEND_FILES
+            + conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2311,8 +2386,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "/usr/lib/gcc/*",
                 "*/Makefile",
             )
-            +conf.GCC_DEPEND_FILES
-            +conf.GCC_INCLUDES
+            + conf.GCC_DEPEND_FILES
+            + conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2332,8 +2407,8 @@ class TraceFullGraphAnalysisTest(BaseTestCase):
                 "*/cups/Dependencies",
                 "*/Makedefs",
             )
-            +conf.GCC_DEPEND_FILES
-            +conf.GCC_INCLUDES
+            + conf.GCC_DEPEND_FILES
+            + conf.GCC_INCLUDES
         )
         stgs.ignored_reads += extra_read_ignored
         stgs.ignored_writes += conf.GCC_DEPEND_FILES
@@ -2372,7 +2447,8 @@ class DumpTest(BaseTestCase):
         input_dir = self.extract_trace(test_name)
         output_dir = None
         stgs = conf.DefaultSettings()
-        procs = tracecode.parse_raw_traces(cwd, input_dir, output_dir, parallel=True, settings=stgs)
+        procs = tracecode.parse_raw_traces(
+            cwd, input_dir, output_dir, parallel=True, settings=stgs)
         resdir = self.get_temp_dir(False)
         resloc = join(resdir, "dumped.csv")
         tracecode.dump_procs_to_csv(procs, resloc, stgs)
@@ -2382,7 +2458,8 @@ class DumpTest(BaseTestCase):
         if regen:
             shutil.copy(resloc, exploc)
         expected = open(exploc).read()
-        assert sorted(l for l in results.splitlines() if l) == sorted(expected.splitlines())
+        assert sorted(l for l in results.splitlines()
+                      if l) == sorted(expected.splitlines())
 
 
 class ConfTest(BaseTestCase):
@@ -2536,11 +2613,13 @@ class TestPathUtils(unittest.TestCase):
         assert test == ("a/b", 2)
 
     def test_common_path_suffix_handles_relative_subpath(self):
-        test = pathutils.common_path_suffix("zsds/adsds/a/b/b/c", "a//a/d//b/c")
+        test = pathutils.common_path_suffix(
+            "zsds/adsds/a/b/b/c", "a//a/d//b/c")
         assert test == ("b/c", 2)
 
     def test_common_path_suffix_ignore_and_strip_trailing_slash(self):
-        test = pathutils.common_path_suffix("zsds/adsds/a/b/b/c/", "a//a/d//b/c/")
+        test = pathutils.common_path_suffix(
+            "zsds/adsds/a/b/b/c/", "a//a/d//b/c/")
         assert test == ("b/c", 2)
 
     def test_common_path_suffix_return_None_if_no_common_suffix(self):
@@ -2553,7 +2632,8 @@ class TestPathUtils(unittest.TestCase):
 
     def test_common_path_suffix_match_only_whole_segments(self):
         # only segments are honored, commonality within segment is ignored
-        test = pathutils.common_path_suffix("this/is/aaaa/great/path", "this/is/aaaaa/great/path")
+        test = pathutils.common_path_suffix(
+            "this/is/aaaa/great/path", "this/is/aaaaa/great/path")
         assert test == ("great/path", 2)
 
     def test_common_path_suffix_two_root(self):

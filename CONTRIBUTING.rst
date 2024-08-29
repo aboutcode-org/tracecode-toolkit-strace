@@ -14,7 +14,7 @@ Feature requests and feedback
 =============================
 
 To send feedback, file an issue at
-https://github.com/nexB/tracecode-build/issues
+https://github.com/aboutcode-org/tracecode-build/issues
 
 If you are proposing a feature:
 
@@ -26,7 +26,7 @@ If you are proposing a feature:
 Bug reports
 ===========
 
-When reporting a bug at https://github.com/nexB/tracecode-build/issues please
+When reporting a bug at https://github.com/aboutcode-org/tracecode-build/issues please
 include:
 
 * Your operating system name, version and architecture (32 or 64 bits).
@@ -53,8 +53,8 @@ Development
 
 To set up TraceCode for local development:
 
-1. Fork tracecode-build on GitHub at 
-   https://github.com/nexB/tracecode-build
+1. Fork tracecode-build on GitHub at
+   https://github.com/aboutcode-org/tracecode-build
 
 2. Clone your fork locally::
 
@@ -68,7 +68,7 @@ To set up TraceCode for local development:
    The configure script creates an isolated Python `virtual environment` in
    your checkout directory, the Python `pip` tool, and installs the thirdparty
    libraries (from the `thirdparty/ directory`), setup the paths, etc.
-   See https://virtualenv.pypa.io/en/latest/ for more details. 
+   See https://virtualenv.pypa.io/en/latest/ for more details.
 
    Run this command to configure TraceCode::
 
@@ -76,7 +76,7 @@ To set up TraceCode for local development:
 
    On Windows use instead::
 
-        configure 
+        configure
 
    When you create a new terminal/shell to work on TraceCode, either rerun the
    configure script or `source bin/activate` (or run `bin\\activate` on Windows)
@@ -85,7 +85,7 @@ To set up TraceCode for local development:
    Please create new unit tests for your code.
 
 6. When you are done with your changes, run all the tests.
-   Use this command:: 
+   Use this command::
 
         py.test
 
@@ -108,7 +108,7 @@ create a pull request. You can add new commits to your branch as needed.
 For merging, your request would need to:
 
 1. Include unit tests that are passing (run ``py.test``).
-2. Update documentation as needed for new API, functionality etc. 
+2. Update documentation as needed for new API, functionality etc.
 3. Add a note to ``CHANGELOG.rst`` about the changes.
 4. Add your name to ``AUTHORS.rst``.
 

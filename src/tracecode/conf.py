@@ -4,7 +4,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/tracecode-toolkit-strace for support or download.
+# See https://github.com/aboutcode-org/tracecode-toolkit-strace for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -234,14 +234,16 @@ PUBLIC_OPTIONS = [
         """Ignore executable paths matching multiple PATTERNs
           loaded from FILE, one per line.""",
     ),
-    Field("sources", tuple(), "--sources=PATH", """Use single PATH as sources."""),
+    Field("sources", tuple(), "--sources=PATH",
+          """Use single PATH as sources."""),
     Field(
         "sources_from",
         None,
         "--sources_from=FILE",
         """Use the paths loaded from FILE as sources, one per line.""",
     ),
-    Field("targets", tuple(), "--targets=PATH ...", """Use single PATH as targets."""),
+    Field("targets", tuple(), "--targets=PATH ...",
+          """Use single PATH as targets."""),
     Field(
         "targets_from",
         None,
@@ -255,7 +257,8 @@ PUBLIC_OPTIONS = [
         """Set the output format for graphics: one of pdf, png
           or dot (graphviz). [default: pdf]""",
     ),
-    Field("forks", False, "--forks", "Include processes that only fork other processes."),
+    Field("forks", False, "--forks",
+          "Include processes that only fork other processes."),
     Field("stats", False, "--stats", """Print syscall statistics when parsing"""),
 ]
 
@@ -301,7 +304,8 @@ PURE_OPTIONS = [
     Field(
         None, None, "--pid=PID", """With the debug command, only print the process with this PID."""
     ),
-    Field(None, False, "--debug", """Include debug details in some commands ouput."""),
+    Field(None, False, "--debug",
+          """Include debug details in some commands ouput."""),
     Field(None, False, "-q, --quiet", "Suppress information messages."),
     Field(None, False, "-h, --help", "Show this help."),
     Field(None, False, "-v, --version", "Print current version."),
@@ -422,7 +426,8 @@ class Settings(object):
 
 
 def BaseSettings(**kwargs):
-    s = Settings(multiplexers=tuple(DEFAULT_MUXERS), errors=tuple(DEFAULT_ERRORS), **kwargs)
+    s = Settings(multiplexers=tuple(DEFAULT_MUXERS),
+                 errors=tuple(DEFAULT_ERRORS), **kwargs)
     return s
 
 
@@ -517,7 +522,9 @@ def settings(args=None):
             args.get("--ignored_execs"), args.get("--ignored_execs_from")
         )
 
-        stgs.sources += patterns(args.get("--sources"), args.get("--sources_from"))
+        stgs.sources += patterns(args.get("--sources"),
+                                 args.get("--sources_from"))
 
-        stgs.targets += patterns(args.get("--targets"), args.get("--targets_from"))
+        stgs.targets += patterns(args.get("--targets"),
+                                 args.get("--targets_from"))
     return stgs

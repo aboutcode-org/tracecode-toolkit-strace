@@ -17,15 +17,15 @@ We use patchelf which is a simple GPL-license executable::
     tar -xf patchelf-f34751b88bd07d7f44f5cd3200fb4122bf916c7e.tar.gz
     mv patchelf-f34751b88bd07d7f44f5cd3200fb4122bf916c7e patchelf-f34751
     cd patchelf-f34751/
-    ./bootstrap.sh 
-    ./configure 
+    ./bootstrap.sh
+    ./configure
     cd ..
 
 
 Fetch tracecode and configure
 ---------------------------------------
 
-    git clone https://github.com/nexB/tracecode-toolkit-strace
+    git clone https://github.com/aboutcode-org/tracecode-toolkit-strace
     cd tracecode-toolkit-strace
     ./configure
     source venv/bin/activate
@@ -47,12 +47,12 @@ Run strace proper:
 Compile patchelf "under" strace::
 
     strace -ff -y -ttt -qq -a1 -o TRACE/patchelf-trace make
-    
+
     Making all in src
     make[1]: Entering directory '/home/user/tracing/patchelf-f34751/src'
     g++ -DPACKAGE_NAME=\"patchelf\" -DPACKAGE_TARNAME=\"patchelf\" -DPACKAGE_VERSION=\"0.12\" -DPACKAGE_STRING=\"patchelf\ 0.12\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"patchelf\" -DVERSION=\"0.12\" -I.    -Wall -std=c++11 -D_FILE_OFFSET_BITS=64  -g -O2 -MT patchelf.o -MD -MP -MF .deps/patchelf.Tpo -c -o patchelf.o patchelf.cc
     mv -f .deps/patchelf.Tpo .deps/patchelf.Po
-    g++ -Wall -std=c++11 -D_FILE_OFFSET_BITS=64  -g -O2   -o patchelf patchelf.o  
+    g++ -Wall -std=c++11 -D_FILE_OFFSET_BITS=64  -g -O2   -o patchelf patchelf.o
     make[1]: Leaving directory '/home/user/tracing/patchelf-f34751/src'
     Making all in tests
     make[1]: Entering directory '/home/user/tracing/patchelf-f34751/tests'
