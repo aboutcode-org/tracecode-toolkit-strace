@@ -7,17 +7,6 @@
 jobs:
     - template: etc/ci/azure-posix.yml
       parameters:
-          job_name: ubuntu18_cpython
-          image_name: ubuntu-18.04
-          python_versions: ['3.7', '3.8', '3.9', '3.10', '3.11']
-          test_suites:
-              all: |
-                  sudo apt-get -y update
-                  sudo apt-get -y install build-essential strace graphviz
-                  venv/bin/pytest -n 2 -vvs
-
-    - template: etc/ci/azure-posix.yml
-      parameters:
           job_name: ubuntu20_cpython
           image_name: ubuntu-20.04
           python_versions: ['3.7', '3.8', '3.9', '3.10', '3.11']
